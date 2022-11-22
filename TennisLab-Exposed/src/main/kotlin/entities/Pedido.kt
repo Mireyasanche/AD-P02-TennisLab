@@ -8,7 +8,7 @@ import org.jetbrains.exposed.sql.javatime.date
 import java.util.*
 
 // TODO: revisar como meter listas en las entities.
-object PedidosTable: UUIDTable("PEDIDOS") {
+object PedidosTable : UUIDTable("PEDIDOS") {
     val tareas = reference("tarea_id", TareasTable)
     val productos = reference("productos_id", ProductosTable)
     val estado = varchar("estado", 50)
@@ -20,12 +20,13 @@ object PedidosTable: UUIDTable("PEDIDOS") {
     val precio = float("precio")
 }
 
-class PedidosDAO(id: EntityID<UUID>): UUIDEntity(id) {
-    companion object: UUIDEntityClass<PedidosDAO>(PedidosTable)
+class PedidosDAO(id: EntityID<UUID>) : UUIDEntity(id) {
+    companion object : UUIDEntityClass<PedidosDAO>(PedidosTable)
+
     var tareas by TareasDAO referencedOn TareasTable.id
     var productos by ProductosDAO referencedOn ProductosTable.id
     var estado by PedidosTable.estado
-    var encordador by UsuariosDAO refeencedOn UsuariosTable.encordador
+    var encordador by UsuariosDAO referencedOn UsuariosTable.id
     var fechaTope by PedidosTable.fechaTope
     var fechaEntrada by PedidosTable.fechaEntrada
     var fechaProgramada by PedidosTable.fechaProgramada
