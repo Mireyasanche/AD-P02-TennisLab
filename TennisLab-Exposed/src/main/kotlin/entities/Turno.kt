@@ -1,5 +1,7 @@
 package entities
 
+import entities.maquinas.MaquinasDAO
+import entities.maquinas.MaquinasTable
 import org.jetbrains.exposed.dao.UUIDEntity
 import org.jetbrains.exposed.dao.UUIDEntityClass
 import org.jetbrains.exposed.dao.id.EntityID

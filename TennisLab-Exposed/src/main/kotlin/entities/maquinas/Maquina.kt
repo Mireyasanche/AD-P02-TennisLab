@@ -1,4 +1,4 @@
-package entities
+package entities.maquinas
 
 import org.jetbrains.exposed.dao.UUIDEntity
 import org.jetbrains.exposed.dao.UUIDEntityClass

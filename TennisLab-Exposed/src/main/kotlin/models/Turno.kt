@@ -1,5 +1,6 @@
 package models
 
+import models.maquinas.Maquina
 import java.time.LocalDateTime
 
 data class Turno (

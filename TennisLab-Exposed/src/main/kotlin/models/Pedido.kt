@@ -1,5 +1,6 @@
 package models
 
+import models.tareas.Tarea
 import java.time.LocalDate
 import java.util.*
 

@@ -1,4 +1,4 @@
-package entities
+package entities.tareas
 
 import org.jetbrains.exposed.dao.UUIDEntity
 import org.jetbrains.exposed.dao.UUIDEntityClass

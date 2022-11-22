@@ -1,11 +1,10 @@
-package entities
+package entities.tareas
 
 import org.jetbrains.exposed.dao.UUIDEntity
 import org.jetbrains.exposed.dao.UUIDEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.UUIDTable
 import java.util.*
-import javax.swing.text.html.parser.Entity
 
 object TareasEncordadoTable: UUIDTable("TAREAS_ENCORDADO") {
     val precio = reference("precio", TareasTable)
