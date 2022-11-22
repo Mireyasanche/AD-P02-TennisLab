@@ -1,8 +1,8 @@
-package mappers
+package mappers.maquinas
 
-import entities.MaquinasEncordarDAO
-import models.MaquinaEncordar
-import models.TipoEncordaje
+import entities.maquinas.MaquinasEncordarDAO
+import models.maquinas.MaquinaEncordar
+import models.maquinas.TipoEncordaje
 
 fun MaquinasEncordarDAO.fromMaquinaEncordarDAOToMaquinaEncordar(): MaquinaEncordar {
     return MaquinaEncordar(

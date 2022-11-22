@@ -1,9 +1,8 @@
-package mappers
+package mappers.tareas
 
-import entities.TareasEncordadoDAO
-import models.NumeroNudos
-import models.Tarea
-import models.TareaEncordado
+import entities.tareas.TareasEncordadoDAO
+import models.tareas.NumeroNudos
+import models.tareas.TareaEncordado
 
 fun TareasEncordadoDAO.fromTareasEncordadoDAOToTareaEncordado()
 : TareaEncordado {

@@ -1,9 +1,7 @@
-package mappers
+package mappers.maquinas
 
-import entities.MaquinasEncordarDAO
-import entities.MaquinasPersonalizarDAO
-import models.MaquinaEncordar
-import models.MaquinaPersonalizar
+import entities.maquinas.MaquinasPersonalizarDAO
+import models.maquinas.MaquinaPersonalizar
 
 fun MaquinasPersonalizarDAO.fromMaquinaPersonalizarDAOToMaquinaPersonalizar(): MaquinaPersonalizar {
     return MaquinaPersonalizar(

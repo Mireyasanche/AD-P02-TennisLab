@@ -1,7 +1,7 @@
-package mappers
+package mappers.tareas
 
-import entities.TareasPersonalizacionDAO
-import models.TareaPersonalizacion
+import entities.tareas.TareasPersonalizacionDAO
+import models.tareas.TareaPersonalizacion
 
 fun TareasPersonalizacionDAO.fromTareasPersonalizacionDATToTareasPersonalizacion()
 : TareaPersonalizacion {

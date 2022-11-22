@@ -1,4 +1,4 @@
-package models
+package models.maquinas
 
 import java.time.LocalDate
 import java.util.*
