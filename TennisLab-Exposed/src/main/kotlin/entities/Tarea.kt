@@ -6,7 +6,7 @@ import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.UUIDTable
 import java.util.*
 
-object TareasTable: UUIDTable() {
+object TareasTable: UUIDTable("TAREAS") {
     val precio = float("precio")
 }
 

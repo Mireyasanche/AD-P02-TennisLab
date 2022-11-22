@@ -6,7 +6,7 @@ import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.UUIDTable
 import java.util.*
 
-object TareasPersonalizacionTable: UUIDTable() {
+object TareasPersonalizacionTable: UUIDTable("TAREAS_PERSONALIZACION") {
     val precio = reference("precio", TareasTable)
     val peso = float("peso")
     val balance = float("balance")

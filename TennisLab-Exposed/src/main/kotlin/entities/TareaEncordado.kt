@@ -7,7 +7,7 @@ import org.jetbrains.exposed.dao.id.UUIDTable
 import java.util.*
 import javax.swing.text.html.parser.Entity
 
-object TareasEncordadoTable: UUIDTable() {
+object TareasEncordadoTable: UUIDTable("TAREAS_ENCORDADO") {
     val precio = reference("precio", TareasTable)
     val tensionHorizontal = float("tension_horizontal")
     val cordajeHorizontal = varchar("cordaje_horizontal", 255)
