@@ -28,7 +28,7 @@ dependencies {
     // Fechas
     implementation("org.jetbrains.exposed:exposed-java-time:0.40.1")
     // Serialization para JSON
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
     //Dokka para sustituir a JDOC y KDOC
     implementation("org.jetbrains.dokka:kotlin-as-java-plugin:1.7.20")
 }
