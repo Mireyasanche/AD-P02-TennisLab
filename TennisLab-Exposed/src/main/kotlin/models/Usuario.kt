@@ -13,16 +13,16 @@ data class Usuario(
     )
 
 enum class TipoUsuario(valor: String){
-    ADMINISTRADOR_ENCARGADO("ADMINISTRADOR ENCARGADO"),
-    ADMINISTRADOR_JEFE("ADMINISTRADOR JEFE"),
+    ADMINISTRADOR_ENCARGADO("ADMINISTRADOR_ENCARGADO"),
+    ADMINISTRADOR_JEFE("ADMINISTRADOR_JEFE"),
     ENCORDADOR("ENCORDADOR"),
     TENISTA("TENISTA");
 
     companion object {
         fun from(tipoUsuario: String): TipoUsuario {
             return when (tipoUsuario.uppercase()) {
-                "ADMINISTRADOR ENCARGADO" -> ADMINISTRADOR_ENCARGADO
-                "ADMINISTRADOR JEFE" -> ADMINISTRADOR_JEFE
+                "ADMINISTRADOR_ENCARGADO" -> ADMINISTRADOR_ENCARGADO
+                "ADMINISTRADOR_JEFE" -> ADMINISTRADOR_JEFE
                 "ENCORDADOR" -> ENCORDADOR
                 "TENISTA" -> TENISTA
                 else -> throw IllegalArgumentException("TipoUsuario no reconocido")
