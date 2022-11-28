@@ -19,7 +19,9 @@ data class Pedido(
 )
 
 enum class TipoEstado(estado: String) {
-    RECIBIDO("RECIBIDO"), EN_PROCESO("EN PROCESO"), TERMINADO("TERMINADO");
+    RECIBIDO("RECIBIDO"),
+    EN_PROCESO("EN PROCESO"),
+    TERMINADO("TERMINADO");
 
     companion object {
         fun from (estado: String): TipoEstado {
