@@ -2,28 +2,23 @@ package repositories.pedido
 
 import entities.PedidosDAO
 import entities.ProductosDAO
-import entities.TurnosDAO
 import entities.UsuariosDAO
-import entities.tareas.TareasDAO
 import exceptions.PedidoException
 import exceptions.ProductoException
 import exceptions.UsuarioException
-import exceptions.maquinas.MaquinaException
 import exceptions.tareas.TareaException
 import mappers.fromPedidosDAOToPedidos
-import mappers.fromTurnoDAOToTurno
 import models.Pedido
-import models.Turno
 import mu.KotlinLogging
-import org.jetbrains.exposed.dao.UUIDEntityClass
+import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.util.*
 
 class PedidosRepository(
-    private val pedidosDAO: UUIDEntityClass<PedidosDAO>,
-    private val tareasDAO: UUIDEntityClass<TareasDAO>,
-    private val usuariosDAO: UUIDEntityClass<UsuariosDAO>,
-    private val productosDAO: UUIDEntityClass<ProductosDAO>
+    private val pedidosDAO: IntEntityClass<PedidosDAO>,
+    private val tareasDAO: IntEntityClass<TareasDAO>,
+    private val usuariosDAO: IntEntityClass<UsuariosDAO>,
+    private val productosDAO: IntEntityClass<ProductosDAO>
 
     ): IPedidosRepository {
     private val logger = KotlinLogging.logger {}
@@ -60,8 +55,6 @@ class PedidosRepository(
     private fun insert(entity: Pedido): Pedido {
         logger.debug { "save($entity) - creando" }
         return pedidosDAO.new(entity.uuid) {
-            tareas = tareasDAO.findById(entity.tareas!!.uuid)
-                ?: throw TareaException("La tarea con id: $id no existe.")
             productos = productosDAO.findById(entity.productos!!.uuid)
                 ?: throw ProductoException("El producto con id: $id no existe.")
             estado = entity.estado.toString()
@@ -78,8 +71,6 @@ class PedidosRepository(
     private fun update(entity: Pedido, existe: PedidosDAO): Pedido {
         logger.debug { "save($entity) - actualizando" }
         return existe.apply {
-            tareas = tareasDAO.findById(entity.tareas!!.uuid)
-                ?: throw TareaException("La tarea con id: $id no existe.")
             productos = productosDAO.findById(entity.productos!!.uuid)
                 ?: throw ProductoException("El producto con id: $id no existe.")
             estado = entity.estado.toString()

@@ -1,27 +1,33 @@
 package entities.maquinas
 
-import org.jetbrains.exposed.dao.UUIDEntity
-import org.jetbrains.exposed.dao.UUIDEntityClass
+import entities.TurnosDAO
+import entities.TurnosTable
+import org.jetbrains.exposed.dao.IntEntity
+import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
-import org.jetbrains.exposed.dao.id.UUIDTable
-import java.util.*
+import org.jetbrains.exposed.dao.id.IntIdTable
+import org.jetbrains.exposed.sql.javatime.date
 
-object MaquinasEncordarTable : UUIDTable("MAQUINAS_ENCORDAR") {
-    val marca = reference("marca", MaquinasTable )
-    val modelo = reference("modelo", MaquinasTable)
-    val fechaAdquisicion = reference("fechaAdquisicion", MaquinasTable)
-    val numeroSerie = reference("numeroSerie", MaquinasTable)
+object MaquinasEncordarTable : IntIdTable("MAQUINAS_ENCORDAR") {
+    val uuid = uuid("uuid").uniqueIndex()
+    val marca = varchar("marca", 100 )
+    val modelo = varchar("modelo", 100)
+    val fechaAdquisicion = date("fechaAdquisicion")
+    val numeroSerie = varchar("numeroSerie", 100)
+    val turno = reference("turno", TurnosTable)
     val tipo = varchar("tipo" , 10)
     val tensionMaxima = float("tensionMaxima")
     val tensionMinima = float("tensionMinima")
 }
 
-class MaquinasEncordarDAO(id: EntityID<UUID>) : UUIDEntity(id) {
-    companion object : UUIDEntityClass<MaquinasEncordarDAO>(MaquinasEncordarTable)
-    var marca by MaquinasDAO referencedOn MaquinasTable.marca
-    var modelo by MaquinasDAO referencedOn MaquinasTable.modelo
-    var fechaAdquisicion by MaquinasDAO referencedOn MaquinasTable.fechaAdquisicion
-    var numeroSerie by MaquinasDAO referencedOn MaquinasTable.numeroSerie
+class MaquinasEncordarDAO(id: EntityID<Int>) : IntEntity(id) {
+    companion object : IntEntityClass<MaquinasEncordarDAO>(MaquinasEncordarTable)
+    var uuid by MaquinasEncordarTable.uuid
+    var marca by MaquinasEncordarTable.marca
+    var modelo by MaquinasEncordarTable.modelo
+    var fechaAdquisicion by MaquinasEncordarTable.fechaAdquisicion
+    var numeroSerie by MaquinasEncordarTable.numeroSerie
+    var turno by TurnosDAO referencedOn MaquinasEncordarTable.turno
     var tipo by MaquinasEncordarTable.tipo
     var tensionMaxima by MaquinasEncordarTable.tensionMaxima
     var tensionMinima by MaquinasEncordarTable.tensionMinima

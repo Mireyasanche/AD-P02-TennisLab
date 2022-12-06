@@ -1,20 +1,17 @@
 package entities
 
-import entities.tareas.TareasDAO
-import entities.tareas.TareasTable
-import org.jetbrains.exposed.dao.UUIDEntity
-import org.jetbrains.exposed.dao.UUIDEntityClass
+import org.jetbrains.exposed.dao.IntEntity
+import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
-import org.jetbrains.exposed.dao.id.UUIDTable
+import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.javatime.date
 import java.util.*
 
-// TODO: revisar como meter listas en las entities.
-object PedidosTable : UUIDTable("PEDIDOS") {
-    val tareas = reference("tarea_id", TareasTable)
+object PedidosTable : IntIdTable("PEDIDOS") {
+    val uuid = uuid("uuid").uniqueIndex()
     val productos = reference("productos_id", ProductosTable)
     val estado = varchar("estado", 50)
-    val encordador = reference("encordador:id", UsuariosTable)
+    val encordador = reference("encordador_id", UsuariosTable)
     val fechaTope = date("fecha_tope")
     val fechaEntrada = date("fecha_entrada")
     val fechaProgramada = date("fecha_programada")
@@ -22,10 +19,9 @@ object PedidosTable : UUIDTable("PEDIDOS") {
     val precio = float("precio")
 }
 
-class PedidosDAO(id: EntityID<UUID>) : UUIDEntity(id) {
-    companion object : UUIDEntityClass<PedidosDAO>(PedidosTable)
-
-    var tareas by TareasDAO referencedOn TareasTable.id
+class PedidosDAO(id: EntityID<Int>) : IntEntity(id) {
+    companion object : IntEntityClass<PedidosDAO>(PedidosTable)
+    var uuid by PedidosTable.uuid
     var productos by ProductosDAO referencedOn ProductosTable.id
     var estado by PedidosTable.estado
     var encordador by UsuariosDAO referencedOn UsuariosTable.id
