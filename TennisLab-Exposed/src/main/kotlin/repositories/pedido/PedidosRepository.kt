@@ -13,7 +13,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 class PedidosRepository(
     private val pedidosDAO: IntEntityClass<PedidosDAO>,
     private val usuariosDAO: IntEntityClass<UsuariosDAO>,
-): IPedidosRepository {
+) : IPedidosRepository {
     private val logger = KotlinLogging.logger {}
 
     override fun findAll(): List<Pedido> = transaction {
@@ -24,7 +24,7 @@ class PedidosRepository(
     override fun findById(id: Int): Pedido = transaction {
         logger.debug { "findById($id) - buscando $id" }
         pedidosDAO.findById(id)
-            ?.fromPedidosDAOToPedidos()?: throw PedidoException("Pedido no encontrado con id: $id")
+            ?.fromPedidosDAOToPedidos() ?: throw PedidoException("Pedido no encontrado con id: $id")
     }
 
     override fun save(entity: Pedido): Pedido = transaction {

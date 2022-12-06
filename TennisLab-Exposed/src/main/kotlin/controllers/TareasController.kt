@@ -31,7 +31,7 @@ class TareasController(
     }
 
     fun getAllTareasPersonalizacion(): List<TareaPersonalizacion> {
-        return  tareasPersonalizacionRepository.findAll()
+        return tareasPersonalizacionRepository.findAll()
     }
 
     fun getTareaPersonalizacionById(id: Int): TareaPersonalizacion {

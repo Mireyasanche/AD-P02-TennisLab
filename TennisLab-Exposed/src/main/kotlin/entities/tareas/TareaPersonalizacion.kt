@@ -8,7 +8,7 @@ import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 
 
-object TareasPersonalizacionTable: IntIdTable("TAREAS_PERSONALIZACION") {
+object TareasPersonalizacionTable : IntIdTable("TAREAS_PERSONALIZACION") {
     val uuid = uuid("uuid").uniqueIndex()
     val precio = float("precio")
     val pedido = reference("pedido", PedidosTable)
@@ -17,7 +17,7 @@ object TareasPersonalizacionTable: IntIdTable("TAREAS_PERSONALIZACION") {
     val rigidez = float("rigidez")
 }
 
-class TareasPersonalizacionDAO(id: EntityID<Int>): IntEntity(id) {
+class TareasPersonalizacionDAO(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<TareasPersonalizacionDAO>(TareasPersonalizacionTable)
 
     var uuid by TareasPersonalizacionTable.uuid
