@@ -12,6 +12,6 @@ fun ProductosDAO.fromProductosDAOToProducto(): Producto {
         modelo = modelo,
         precio = precio,
         stock = stock,
-        pedido = pedido.uuid
+        pedido = pedido.fromPedidosDAOToPedidos()
     )
 }

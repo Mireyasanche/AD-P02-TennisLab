@@ -18,7 +18,7 @@ fun main(args: Array<String>) {
 fun initDataBase() {
     val appConfig = AppConfig.fromPropertiesFile("src/main/resources/config.properties")
     println("Configuración: $appConfig")
-    
+
     DataBaseManager.init(appConfig)
 
 }

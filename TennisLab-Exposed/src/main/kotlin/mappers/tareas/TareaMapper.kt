@@ -2,6 +2,7 @@ package mappers.tareas
 
 import entities.tareas.TareasEncordadoDAO
 import entities.tareas.TareasPersonalizacionDAO
+import mappers.fromPedidosDAOToPedidos
 import models.tareas.NumeroNudos
 import models.tareas.TareaEncordado
 import models.tareas.TareaPersonalizacion
@@ -16,7 +17,7 @@ fun TareasEncordadoDAO.fromTareasEncordadoDAOToTareasEncordado()
         cordajeHorizontal = cordajeHorizontal,
         tensionVertical = tensionVertical,
         cordajeVertical = cordajeVertical,
-        pedido = pedido.uuid,
+        pedido = pedido.fromPedidosDAOToPedidos(),
         nudos = NumeroNudos.from(nudos)
     )
 }
@@ -30,6 +31,6 @@ fun TareasPersonalizacionDAO.fromTareasPersonalizacionDAOToTareasPersonalizacion
         peso = peso,
         balance = balance,
         rigidez = rigidez,
-        pedido = pedido.uuid
+        pedido = pedido.fromPedidosDAOToPedidos()
     )
 }
