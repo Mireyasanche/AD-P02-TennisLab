@@ -1,42 +1,35 @@
 package mappers.tareas
 
-import entities.tareas.TareasDAO
-import entities.tareas.TareasEncordadoTable.cordajeHorizontal
-import entities.tareas.TareasEncordadoTable.cordajeVertical
-import entities.tareas.TareasEncordadoTable.nudos
-import entities.tareas.TareasEncordadoTable.tensionHorizontal
-import entities.tareas.TareasEncordadoTable.tensionVertical
-import entities.tareas.TareasPersonalizacionTable.balance
-import entities.tareas.TareasPersonalizacionTable.peso
-import entities.tareas.TareasPersonalizacionTable.rigidez
+import entities.tareas.TareasEncordadoDAO
+import entities.tareas.TareasPersonalizacionDAO
 import models.tareas.NumeroNudos
 import models.tareas.TareaEncordado
 import models.tareas.TareaPersonalizacion
 
-fun TareasDAO.fromTareasEncordadoDAOToTareaEncordado()
-: TareaEncordado {
+fun TareasEncordadoDAO.fromTareasEncordadoDAOToTareasEncordado()
+        : TareaEncordado {
     return TareaEncordado(
-        id = 0,
-        uuid = id.value,
-        // TODO: revisar referencia de precio.
+        id = id.value,
+        uuid = uuid,
         precio = precio,
-        tensionHorizontal = tensionHorizontal.toString().toFloat(),
-        cordajeHorizontal = cordajeHorizontal.toString(),
-        tensionVertical = tensionVertical.toString().toFloat(),
-        cordajeVertical = cordajeVertical.toString(),
-        nudos = NumeroNudos.from(nudos.toString())
+        tensionHorizontal = tensionHorizontal,
+        cordajeHorizontal = cordajeHorizontal,
+        tensionVertical = tensionVertical,
+        cordajeVertical = cordajeVertical,
+        pedido = pedido.uuid,
+        nudos = NumeroNudos.from(nudos)
     )
 }
 
-fun TareasDAO.fromTareasPersonalizacionDAOToTareasPersonalizacion()
-: TareaPersonalizacion {
+fun TareasPersonalizacionDAO.fromTareasPersonalizacionDAOToTareasPersonalizacion()
+        : TareaPersonalizacion {
     return TareaPersonalizacion(
-        id = 0,
-        uuid = id.value,
-        // TODO: revisar referencia de precio.
+        id = id.value,
+        uuid = uuid,
         precio = precio,
-        peso = peso.toString().toFloat(),
-        balance = balance.toString().toFloat(),
-        rigidez = rigidez.toString().toFloat()
+        peso = peso,
+        balance = balance,
+        rigidez = rigidez,
+        pedido = pedido.uuid
     )
 }

@@ -13,7 +13,6 @@ fun main(args: Array<String>) {
     }
 
     repo.findAll()
-
 }
 
 fun initDataBase() {
