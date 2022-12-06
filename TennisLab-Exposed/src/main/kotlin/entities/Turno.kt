@@ -1,26 +1,26 @@
 package entities
 
 
-import entities.maquinas.MaquinasDAO
-import entities.maquinas.MaquinasTable
-import org.jetbrains.exposed.dao.UUIDEntity
-import org.jetbrains.exposed.dao.UUIDEntityClass
+import org.jetbrains.exposed.dao.IntEntity
+import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
-import org.jetbrains.exposed.dao.id.UUIDTable
+import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.javatime.datetime
-import java.util.*
 
-object TurnosTable : UUIDTable("TURNOS") {
+object TurnosTable : IntIdTable("TURNOS") {
+    val uuid = uuid("uuid").uniqueIndex()
     val comienzo = datetime("comienzo")
     val final = datetime("final")
-    val maquina = reference("maquina_id", MaquinasTable)
-    val encordador = reference("usuario_id", UsuariosTable)
+
+    val encordador = reference("usuario_uuid", UsuariosTable)
 }
 
-class TurnosDAO(id: EntityID<UUID>) : UUIDEntity(id) {
-    companion object : UUIDEntityClass<TurnosDAO>(TurnosTable)
+class TurnosDAO(id: EntityID<Int>) : IntEntity(id) {
+    companion object : IntEntityClass<TurnosDAO>(TurnosTable)
+
+    var uuid by TurnosTable.uuid
     var comienzo by TurnosTable.comienzo
     var final by TurnosTable.final
-    var maquina by MaquinasDAO referencedOn MaquinasTable.id
-    var encordador by UsuariosDAO referencedOn UsuariosTable.id
+
+    var encordador by UsuariosDAO referencedOn TurnosTable.encordador
 }

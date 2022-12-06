@@ -10,14 +10,15 @@ class MaquinaEncordar(
     override val modelo: String,
     override val fechaAdquisicion: LocalDate,
     override val numeroSerie: Int,
+    override val turno: UUID,
     val tipo: TipoEncordaje,
     val tensionMaxima: Float,
     val tensionMinima: Float,
 
 
-): Maquina
+    ) : Maquina
 
-enum class TipoEncordaje(valor: String){
+enum class TipoEncordaje(valor: String) {
     MANUAL("MANUAL"),
     AUTOMATICA("AUTOMATICA");
 

@@ -1,17 +1,16 @@
 package mappers
 
 import entities.UsuariosDAO
-import models.TipoUsuario
 import models.Usuario
 
 fun UsuariosDAO.fromUsuarioDAOToUsuario(): Usuario {
     return Usuario(
-        id = 0,
-        uuid = id.value,
+        id = id.value,
+        uuid = uuid,
         nombre = nombre,
         apellido = apellido,
         email = email,
         contrasena = contrasena,
-        perfil = TipoUsuario.from(perfil),
+        perfil = perfil,
     )
 }

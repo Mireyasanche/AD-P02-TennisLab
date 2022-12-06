@@ -5,11 +5,9 @@ import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.javatime.date
-import java.util.*
 
 object PedidosTable : IntIdTable("PEDIDOS") {
     val uuid = uuid("uuid").uniqueIndex()
-    val productos = reference("productos_id", ProductosTable)
     val estado = varchar("estado", 50)
     val encordador = reference("encordador_id", UsuariosTable)
     val fechaTope = date("fecha_tope")
@@ -21,8 +19,8 @@ object PedidosTable : IntIdTable("PEDIDOS") {
 
 class PedidosDAO(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<PedidosDAO>(PedidosTable)
+
     var uuid by PedidosTable.uuid
-    var productos by ProductosDAO referencedOn ProductosTable.id
     var estado by PedidosTable.estado
     var encordador by UsuariosDAO referencedOn UsuariosTable.id
     var fechaTope by PedidosTable.fechaTope
