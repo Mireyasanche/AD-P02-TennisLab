@@ -10,8 +10,9 @@ class MaquinaPersonalizar(
     override val modelo: String,
     override val fechaAdquisicion: LocalDate,
     override val numeroSerie: Int,
+    override val turno: UUID,
     val mideManiobrabilidad: Boolean,
     val balance: Float,
     val rigidez: Float
 
-): Maquina
+) : Maquina

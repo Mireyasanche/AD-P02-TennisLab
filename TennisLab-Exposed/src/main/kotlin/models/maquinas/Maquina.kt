@@ -10,4 +10,5 @@ interface Maquina {
     val modelo: String
     val fechaAdquisicion: LocalDate
     val numeroSerie: Int
+    val turno: UUID
 }

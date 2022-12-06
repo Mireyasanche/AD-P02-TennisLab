@@ -5,13 +5,13 @@ import exceptions.UsuarioException
 import mappers.fromUsuarioDAOToUsuario
 import models.Usuario
 import mu.KotlinLogging
-import org.jetbrains.exposed.dao.UUIDEntityClass
+import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.util.*
 
 class UsuariosRepository(
-    private val usuariosDAO: UUIDEntityClass<UsuariosDAO>
-): IUsuariosRepository {
+    private val usuariosDAO: IntEntityClass<UsuariosDAO>
+) : IUsuariosRepository {
 
     private val logger = KotlinLogging.logger {}
 
@@ -20,17 +20,16 @@ class UsuariosRepository(
         usuariosDAO.all().map { it.fromUsuarioDAOToUsuario() }
     }
 
-    override fun findById(id: UUID): Usuario?  = transaction {
+    override fun findById(id: UUID): Usuario? = transaction {
         logger.debug { "findById($id) - buscando $id" }
         usuariosDAO.findById(id)
-            ?.fromUsuarioDAOToUsuario()?: throw UsuarioException("Usuario no encontrado con id: $id")
+            ?.fromUsuarioDAOToUsuario() ?: throw UsuarioException("Usuario no encontrado con id: $id")
     }
 
     override fun save(entity: Usuario): Usuario = transaction {
         val existe = usuariosDAO.findById(entity.uuid)
 
         existe?.let {
-            // Si existe actualizamos
             update(entity, existe)
         } ?: run {
             insert(entity)
@@ -44,14 +43,14 @@ class UsuariosRepository(
         true
     }
 
-     private fun insert(entity: Usuario): Usuario {
-         logger.debug { "save($entity) - creando" }
+    private fun insert(entity: Usuario): Usuario {
+        logger.debug { "save($entity) - creando" }
         return usuariosDAO.new(entity.uuid) {
             nombre = entity.nombre
             apellido = entity.apellido
             email = entity.email
             contrasena = entity.contrasena
-            perfil = entity.perfil.toString()
+            perfil = entity.perfil
         }.fromUsuarioDAOToUsuario()
     }
 
@@ -62,7 +61,7 @@ class UsuariosRepository(
             apellido = entity.apellido
             email = entity.email
             contrasena = entity.contrasena
-            perfil = entity.perfil.toString()
+            perfil = entity.perfil
         }.fromUsuarioDAOToUsuario()
     }
 }
