@@ -13,6 +13,7 @@ object ProductosTable : IntIdTable("PRODUCTOS") {
     val modelo = varchar("modelo", 255)
     val precio = float("precio")
     val stock = integer("stock")
+    val pedido = reference("pedido_uuid", PedidosTable)
 }
 
 class ProductosDAO(id: EntityID<Int>) : IntEntity(id) {
@@ -24,4 +25,6 @@ class ProductosDAO(id: EntityID<Int>) : IntEntity(id) {
     var modelo by ProductosTable.modelo
     var precio by ProductosTable.precio
     var stock by ProductosTable.stock
+
+    var pedido by PedidosDAO referencedOn ProductosTable.pedido
 }

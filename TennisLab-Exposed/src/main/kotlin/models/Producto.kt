@@ -9,7 +9,8 @@ data class Producto(
     val marca: String,
     val modelo: String,
     val precio: Float,
-    val stock: Int
+    val stock: Int,
+    val pedido: UUID
 )
 
 enum class TipoProducto(val tipoProducto: String) {

@@ -1,13 +1,11 @@
 package models
 
-import models.tareas.Tarea
 import java.time.LocalDate
 import java.util.*
 
 data class Pedido(
     val id: Int,
     val uuid: UUID,
-    val productos: MutableList<Producto>,
     val estado: TipoEstado,
     val encordador: Usuario,
     val fechaTope: LocalDate,
@@ -23,7 +21,7 @@ enum class TipoEstado(estado: String) {
     TERMINADO("TERMINADO");
 
     companion object {
-        fun from (estado: String): TipoEstado {
+        fun from(estado: String): TipoEstado {
             return when (estado.uppercase()) {
                 "RECIBIDO" -> RECIBIDO
                 "EN PROCESO" -> EN_PROCESO
