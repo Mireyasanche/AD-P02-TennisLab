@@ -8,8 +8,6 @@ import kotlinx.serialization.Serializable
 data class PedidoDTO(
     val id: Int,
     val uuid: String,
-    val tareas: String,
-    val productos: String,
     val estado: String,
     val encordador: String,
     val fechaTope: String,
