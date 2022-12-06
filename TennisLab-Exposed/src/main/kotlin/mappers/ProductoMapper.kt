@@ -6,12 +6,13 @@ import models.TipoProducto
 
 fun ProductosDAO.fromProductosDAOToProducto(): Producto {
     return Producto(
-        id = 0,
-        uuid = id.value,
-        tipoProducto = TipoProducto.from(tipoProducto),
+        id = id.value,
+        uuid = uuid,
+        tipoProducto = tipoProducto,
         marca = marca,
         modelo = modelo,
         precio = precio,
-        stock = stock
+        stock = stock,
+        pedido = pedido.uuid
     )
 }
