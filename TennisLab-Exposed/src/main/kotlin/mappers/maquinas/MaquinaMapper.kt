@@ -8,6 +8,7 @@ import entities.maquinas.MaquinasPersonalizarDAO
 import entities.maquinas.MaquinasPersonalizarTable.balance
 import entities.maquinas.MaquinasPersonalizarTable.mideManiobrabilidad
 import entities.maquinas.MaquinasPersonalizarTable.rigidez
+import mappers.fromTurnoDAOToTurno
 import models.maquinas.MaquinaEncordar
 import models.maquinas.MaquinaPersonalizar
 import models.maquinas.TipoEncordaje
@@ -20,7 +21,7 @@ fun MaquinasEncordarDAO.fromMaquinaEncordarDAOToMaquinaEncordar(): MaquinaEncord
         modelo = modelo,
         fechaAdquisicion = fechaAdquisicion,
         numeroSerie = numeroSerie,
-        turno = turno.uuid,
+        turno = turno.fromTurnoDAOToTurno(),
         tipo = TipoEncordaje.from(tipo),
         tensionMaxima = tensionMaxima,
         tensionMinima = tensionMinima,
@@ -35,7 +36,7 @@ fun MaquinasPersonalizarDAO.fromMaquinaPersonalizarDAOToMaquinaPersonalizar(): M
         modelo = modelo,
         fechaAdquisicion = fechaAdquisicion,
         numeroSerie = numeroSerie,
-        turno = turno.uuid,
+        turno = turno.fromTurnoDAOToTurno(),
         mideManiobrabilidad = mideManiobrabilidad,
         balance = balance,
         rigidez = rigidez

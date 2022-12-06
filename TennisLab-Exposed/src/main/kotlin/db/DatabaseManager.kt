@@ -4,10 +4,8 @@ import config.AppConfig
 import entities.*
 import entities.maquinas.MaquinasEncordarTable
 import entities.maquinas.MaquinasPersonalizarTable
-import entities.maquinas.MaquinasTable
 import entities.tareas.TareasEncordadoTable
 import entities.tareas.TareasPersonalizacionTable
-import entities.tareas.TareasTable
 import mu.KotlinLogging
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
@@ -43,12 +41,10 @@ object DataBaseManager {
             addLogger(StdOutSqlLogger)
 
         SchemaUtils.create(
-            MaquinasTable,
             MaquinasEncordarTable,
             MaquinasPersonalizarTable,
             PedidosTable,
             ProductosTable,
-            TareasTable,
             TareasEncordadoTable,
             TareasPersonalizacionTable,
             TurnosTable,
