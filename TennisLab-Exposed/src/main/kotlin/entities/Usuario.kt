@@ -22,4 +22,5 @@ class UsuariosDAO(id: EntityID<UUID>) : UUIDEntity(id) {
     var contrasena by UsuariosTable.contrasena
     var perfil by UsuariosTable.perfil
 
+    val turno by TurnosDAO referrersOn TurnosTable.encordador
 }

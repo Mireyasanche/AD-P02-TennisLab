@@ -7,7 +7,6 @@ import java.util.*
 data class Pedido(
     val id: Int,
     val uuid: UUID,
-    val tareas: MutableList<Tarea>,
     val productos: MutableList<Producto>,
     val estado: TipoEstado,
     val encordador: Usuario,

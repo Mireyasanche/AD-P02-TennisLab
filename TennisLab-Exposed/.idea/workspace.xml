@@ -5,17 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f22e2f8e-0a0c-48b1-a472-1e6c493b0cca" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/repositories/pedido/IPedidosRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/repositories/pedido/PedidosRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/repositories/turno/ITurnosRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/repositories/turno/TurnosRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/AD-P02-TennisLab.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/mappers/PedidoMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/mappers/PedidoMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/mappers/TurnoMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/mappers/TurnoMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/mappers/tareas/TareaEncordadoMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/mappers/tareas/TareaMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/mappers/tareas/TareaPersonalizacionMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/entities/Pedido.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/entities/Pedido.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/entities/Usuario.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/entities/Usuario.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/entities/maquinas/Maquina.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/entities/maquinas/MaquinaEncordar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/entities/maquinas/MaquinaEncordar.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/entities/maquinas/MaquinaPersonalizar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/entities/maquinas/MaquinaPersonalizar.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/entities/tareas/Tarea.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/entities/tareas/TareaEncordado.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/entities/tareas/TareaEncordado.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/entities/tareas/TareaPersonalizacion.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/entities/tareas/TareaPersonalizacion.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/models/Pedido.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/models/Pedido.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/models/Turno.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/models/Turno.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/models/tareas/Tarea.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/models/tareas/Tarea.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/models/tareas/TareaEncordado.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/models/tareas/TareaEncordado.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/models/tareas/TareaPersonalizacion.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/models/tareas/TareaPersonalizacion.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/repositories/pedido/PedidosRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/repositories/pedido/PedidosRepository.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,22 +63,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Project.color&quot;: &quot;0a5b4c&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Project.color": "0a5b4c",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/mireyasanchez/Documents/AccesoADatos/Practicas/P02_Tenis/AD-P02-TennisLab/TennisLab-Exposed",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/kotlin/exceptions/Tareas" />
@@ -105,7 +119,11 @@
       <workItem from="1668977559398" duration="195000" />
       <workItem from="1669143196529" duration="7876000" />
       <workItem from="1669221574552" duration="4913000" />
-      <workItem from="1669657045326" duration="4695000" />
+      <workItem from="1669657045326" duration="5584000" />
+      <workItem from="1669713929024" duration="46000" />
+      <workItem from="1669714044148" duration="58000" />
+      <workItem from="1669751167612" duration="2349000" />
+      <workItem from="1670350693567" duration="3174000" />
     </task>
     <servers />
   </component>

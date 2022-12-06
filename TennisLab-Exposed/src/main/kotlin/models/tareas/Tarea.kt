@@ -2,8 +2,9 @@ package models.tareas
 
 import java.util.*
 
-abstract class Tarea(
-    val id: Int,
-    val uuid: UUID,
+interface Tarea{
+    val id: Int
+    val uuid: UUID
     val precio: Float
-)
+    val pedido : UUID
+}
