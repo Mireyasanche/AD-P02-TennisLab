@@ -6,8 +6,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("Turno")
 data class TurnoDTO(
-    val comienzo : String,
-    val final : String,
-    val maquina: String,
+    val id: Int,
+    val uuid: String,
+    val comienzo: String,
+    val final: String,
     val encordador: String
 )
