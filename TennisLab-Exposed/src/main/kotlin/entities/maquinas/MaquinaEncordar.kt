@@ -13,7 +13,7 @@ object MaquinasEncordarTable : IntIdTable("MAQUINAS_ENCORDAR") {
     val marca = varchar("marca", 100 )
     val modelo = varchar("modelo", 100)
     val fechaAdquisicion = date("fechaAdquisicion")
-    val numeroSerie = varchar("numeroSerie", 100)
+    val numeroSerie = integer("numeroSerie")
     val turno = reference("turno", TurnosTable)
     val tipo = varchar("tipo" , 10)
     val tensionMaxima = float("tensionMaxima")

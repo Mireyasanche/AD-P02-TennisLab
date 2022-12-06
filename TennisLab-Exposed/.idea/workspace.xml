@@ -5,29 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f22e2f8e-0a0c-48b1-a472-1e6c493b0cca" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/AD-P02-TennisLab.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/entities/Pedido.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/entities/Pedido.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/entities/Usuario.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/entities/Usuario.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/entities/maquinas/Maquina.kt" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/repositories/maquinas/IMaquinasEncordarRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/repositories/maquinas/IMaquinasPersonalizarRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/repositories/maquinas/MaquinasEncordarRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/repositories/maquinas/MaquinasPersonalizarRepository.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/entities/maquinas/MaquinaEncordar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/entities/maquinas/MaquinaEncordar.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/entities/maquinas/MaquinaPersonalizar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/entities/maquinas/MaquinaPersonalizar.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/entities/tareas/Tarea.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/entities/tareas/TareaEncordado.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/entities/tareas/TareaEncordado.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/entities/tareas/TareaPersonalizacion.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/entities/tareas/TareaPersonalizacion.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/models/Pedido.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/models/Pedido.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/models/tareas/Tarea.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/models/tareas/Tarea.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/models/tareas/TareaEncordado.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/models/tareas/TareaEncordado.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/models/tareas/TareaPersonalizacion.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/models/tareas/TareaPersonalizacion.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/mappers/PedidoMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/mappers/PedidoMapper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/mappers/ProductoMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/mappers/ProductoMapper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/mappers/maquinas/MaquinaMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/mappers/maquinas/MaquinaMapper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/models/Producto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/models/Producto.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/models/maquinas/Maquina.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/models/maquinas/Maquina.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/models/maquinas/MaquinaEncordar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/models/maquinas/MaquinaEncordar.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/models/maquinas/MaquinaPersonalizar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/models/maquinas/MaquinaPersonalizar.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/repositories/ICRUDRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/repositories/ICRUDRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/repositories/pedido/IPedidosRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/repositories/pedido/IPedidosRepository.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/repositories/pedido/PedidosRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/repositories/pedido/PedidosRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/repositories/producto/IProductosRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/repositories/producto/IProductosRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/repositories/producto/ProductosRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/repositories/producto/ProductosRepository.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +118,7 @@
       <workItem from="1669713929024" duration="46000" />
       <workItem from="1669714044148" duration="58000" />
       <workItem from="1669751167612" duration="2349000" />
-      <workItem from="1670350693567" duration="3174000" />
+      <workItem from="1670350693567" duration="7045000" />
     </task>
     <servers />
   </component>

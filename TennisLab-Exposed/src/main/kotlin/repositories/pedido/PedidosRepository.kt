@@ -1,26 +1,19 @@
 package repositories.pedido
 
 import entities.PedidosDAO
-import entities.ProductosDAO
 import entities.UsuariosDAO
 import exceptions.PedidoException
-import exceptions.ProductoException
 import exceptions.UsuarioException
-import exceptions.tareas.TareaException
 import mappers.fromPedidosDAOToPedidos
 import models.Pedido
 import mu.KotlinLogging
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.sql.transactions.transaction
-import java.util.*
 
 class PedidosRepository(
     private val pedidosDAO: IntEntityClass<PedidosDAO>,
-    private val tareasDAO: IntEntityClass<TareasDAO>,
     private val usuariosDAO: IntEntityClass<UsuariosDAO>,
-    private val productosDAO: IntEntityClass<ProductosDAO>
-
-    ): IPedidosRepository {
+): IPedidosRepository {
     private val logger = KotlinLogging.logger {}
 
     override fun findAll(): List<Pedido> = transaction {
@@ -28,17 +21,16 @@ class PedidosRepository(
         pedidosDAO.all().map { it.fromPedidosDAOToPedidos() }
     }
 
-    override fun findById(id: UUID): Pedido? = transaction {
+    override fun findById(id: Int): Pedido? = transaction {
         logger.debug { "findById($id) - buscando $id" }
         pedidosDAO.findById(id)
             ?.fromPedidosDAOToPedidos()?: throw PedidoException("Pedido no encontrado con id: $id")
     }
 
     override fun save(entity: Pedido): Pedido = transaction {
-        val existe = pedidosDAO.findById(entity.uuid)
+        val existe = pedidosDAO.findById(entity.id)
 
         existe?.let {
-            // Si existe actualizamos
             update(entity, existe)
         } ?: run {
             insert(entity)
@@ -46,7 +38,7 @@ class PedidosRepository(
     }
 
     override fun delete(entity: Pedido): Boolean = transaction {
-        val existe = pedidosDAO.findById(entity.uuid) ?: return@transaction false
+        val existe = pedidosDAO.findById(entity.id) ?: return@transaction false
         logger.debug { "delete($entity) - borrando" }
         existe.delete()
         true
@@ -54,11 +46,10 @@ class PedidosRepository(
 
     private fun insert(entity: Pedido): Pedido {
         logger.debug { "save($entity) - creando" }
-        return pedidosDAO.new(entity.uuid) {
-            productos = productosDAO.findById(entity.productos!!.uuid)
-                ?: throw ProductoException("El producto con id: $id no existe.")
+        return pedidosDAO.new(entity.id) {
+            uuid = entity.uuid
             estado = entity.estado.toString()
-            encordador = usuariosDAO.findById(entity.encordador!!.uuid)
+            encordador = usuariosDAO.findById(entity.encordador!!.id)
                 ?: throw UsuarioException("El encordador con id: $id no existe.")
             fechaTope = entity.fechaTope
             fechaEntrada = entity.fechaEntrada
@@ -71,10 +62,9 @@ class PedidosRepository(
     private fun update(entity: Pedido, existe: PedidosDAO): Pedido {
         logger.debug { "save($entity) - actualizando" }
         return existe.apply {
-            productos = productosDAO.findById(entity.productos!!.uuid)
-                ?: throw ProductoException("El producto con id: $id no existe.")
+            uuid = entity.uuid
             estado = entity.estado.toString()
-            encordador = usuariosDAO.findById(entity.encordador!!.uuid)
+            encordador = usuariosDAO.findById(entity.encordador!!.id)
                 ?: throw UsuarioException("El encordador con id: $id no existe.")
             fechaTope = entity.fechaTope
             fechaEntrada = entity.fechaEntrada

@@ -4,5 +4,5 @@ import models.Producto
 import repositories.ICRUDRepository
 import java.util.*
 
-interface IProductosRepository: ICRUDRepository<Producto, UUID> {
+interface IProductosRepository: ICRUDRepository<Producto, Int> {
 }

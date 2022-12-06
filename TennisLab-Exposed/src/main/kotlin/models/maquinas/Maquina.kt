@@ -1,5 +1,6 @@
 package models.maquinas
 
+import models.Turno
 import java.time.LocalDate
 import java.util.*
 
@@ -10,5 +11,5 @@ interface Maquina {
     val modelo: String
     val fechaAdquisicion: LocalDate
     val numeroSerie: Int
-    val turno: UUID
+    val turno: Turno
 }
