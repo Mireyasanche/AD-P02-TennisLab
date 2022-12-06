@@ -9,7 +9,7 @@ import mu.KotlinLogging
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.sql.transactions.transaction
 
-class TareasEncordadoEncordadoRepository(
+class TareasEncordadoRepository(
     private val tareasDAO: IntEntityClass<TareasEncordadoDAO>,
     private val pedidosDAO: IntEntityClass<PedidosDAO>
 ) : ITareasEncordadoRepository {

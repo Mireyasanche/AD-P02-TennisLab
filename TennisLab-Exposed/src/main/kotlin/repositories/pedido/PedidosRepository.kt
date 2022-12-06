@@ -21,7 +21,7 @@ class PedidosRepository(
         pedidosDAO.all().map { it.fromPedidosDAOToPedidos() }
     }
 
-    override fun findById(id: Int): Pedido? = transaction {
+    override fun findById(id: Int): Pedido = transaction {
         logger.debug { "findById($id) - buscando $id" }
         pedidosDAO.findById(id)
             ?.fromPedidosDAOToPedidos()?: throw PedidoException("Pedido no encontrado con id: $id")

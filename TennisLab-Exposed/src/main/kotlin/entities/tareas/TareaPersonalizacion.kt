@@ -18,8 +18,8 @@ object TareasPersonalizacionTable: IntIdTable("TAREAS_PERSONALIZACION") {
 }
 
 class TareasPersonalizacionDAO(id: EntityID<Int>): IntEntity(id) {
+    companion object : IntEntityClass<TareasPersonalizacionDAO>(TareasPersonalizacionTable)
 
-    companion object : IntEntityClass<TareasEncordadoDAO>(TareasPersonalizacionTable)
     var uuid by TareasPersonalizacionTable.uuid
     var precio by TareasPersonalizacionTable.precio
     var pedido by PedidosDAO referencedOn TareasPersonalizacionTable.pedido

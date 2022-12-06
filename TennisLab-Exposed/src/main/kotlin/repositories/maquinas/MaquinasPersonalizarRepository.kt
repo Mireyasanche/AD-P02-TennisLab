@@ -21,7 +21,7 @@ class MaquinasPersonalizarRepository(
         maquinasPersonalizarDAO.all().map { it.fromMaquinaPersonalizarDAOToMaquinaPersonalizar() }
     }
 
-    override fun findById(id: Int): MaquinaPersonalizar? = transaction {
+    override fun findById(id: Int): MaquinaPersonalizar = transaction {
         logger.debug { "findById($id) - buscando $id" }
         maquinasPersonalizarDAO.findById(id)
             ?.fromMaquinaPersonalizarDAOToMaquinaPersonalizar()?: throw MaquinaPersonalizarException("Máquina de personalizar no encontrada con id: $id")
