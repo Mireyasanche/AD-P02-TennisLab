@@ -21,7 +21,7 @@ class MaquinasEncordarRepository(
         maquinasEncordarDAO.all().map { it.fromMaquinaEncordarDAOToMaquinaEncordar() }
     }
 
-    override fun findById(id: Int): MaquinaEncordar? = transaction {
+    override fun findById(id: Int): MaquinaEncordar = transaction {
         logger.debug { "findById($id) - buscando $id" }
         maquinasEncordarDAO.findById(id)
             ?.fromMaquinaEncordarDAOToMaquinaEncordar()?: throw MaquinaEncordarException("Máquina de encordar no encontrada con id: $id")
