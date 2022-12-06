@@ -13,7 +13,7 @@ class MaquinasPersonalizarRepository(
     private val maquinasPersonalizarDAO: IntEntityClass<MaquinasPersonalizarDAO>,
     private val turnosDAO: IntEntityClass<TurnosDAO>
 
-) : IMaquinasPersonalizarRepository{
+) : IMaquinasPersonalizarRepository {
     private val logger = KotlinLogging.logger {}
 
     override fun findAll(): List<MaquinaPersonalizar> = transaction {
@@ -24,7 +24,8 @@ class MaquinasPersonalizarRepository(
     override fun findById(id: Int): MaquinaPersonalizar = transaction {
         logger.debug { "findById($id) - buscando $id" }
         maquinasPersonalizarDAO.findById(id)
-            ?.fromMaquinaPersonalizarDAOToMaquinaPersonalizar()?: throw MaquinaPersonalizarException("Máquina de personalizar no encontrada con id: $id")
+            ?.fromMaquinaPersonalizarDAOToMaquinaPersonalizar()
+            ?: throw MaquinaPersonalizarException("Máquina de personalizar no encontrada con id: $id")
     }
 
     override fun save(entity: MaquinaPersonalizar): MaquinaPersonalizar = transaction {
