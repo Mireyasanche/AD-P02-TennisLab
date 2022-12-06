@@ -11,7 +11,7 @@ fun ProductosDAO.fromProductosDAOToProducto(): Producto {
         marca = marca,
         modelo = modelo,
         precio = precio,
-        pedido = pedido.uuid,
-        stock = stock
+        stock = stock,
+        pedido = pedido.uuid
     )
 }

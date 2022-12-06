@@ -13,7 +13,7 @@ object MaquinasPersonalizarTable : IntIdTable("MAQUINAS_PERSONALIZAR") {
     val marca = varchar("marca", 100)
     val modelo = varchar("modelo", 100)
     val fechaAdquisicion = date("fechaAdquisicion")
-    val numeroSerie = varchar("numeroSerie",100)
+    val numeroSerie = integer("numeroSerie")
     val turno = reference("turno", TurnosTable)
     val mideManiobrabilidad = bool("mideManiobrabilidad")
     val balance = float("balance")

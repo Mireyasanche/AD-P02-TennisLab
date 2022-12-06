@@ -1,5 +1,6 @@
 package models.maquinas
 
+import models.Turno
 import java.time.LocalDate
 import java.util.*
 
@@ -10,7 +11,7 @@ class MaquinaEncordar(
     override val modelo: String,
     override val fechaAdquisicion: LocalDate,
     override val numeroSerie: Int,
-    override val turno: UUID,
+    override val turno: Turno,
     val tipo: TipoEncordaje,
     val tensionMaxima: Float,
     val tensionMinima: Float,
