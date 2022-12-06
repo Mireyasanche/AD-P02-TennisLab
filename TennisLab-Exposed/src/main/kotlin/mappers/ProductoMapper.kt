@@ -2,7 +2,6 @@ package mappers
 
 import entities.ProductosDAO
 import models.Producto
-import models.TipoProducto
 
 fun ProductosDAO.fromProductosDAOToProducto(): Producto {
     return Producto(

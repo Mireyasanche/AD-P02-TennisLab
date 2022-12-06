@@ -7,7 +7,6 @@ import models.Usuario
 import mu.KotlinLogging
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.sql.transactions.transaction
-import java.util.*
 
 class UsuariosRepository(
     private val usuariosDAO: IntEntityClass<UsuariosDAO>
@@ -20,14 +19,14 @@ class UsuariosRepository(
         usuariosDAO.all().map { it.fromUsuarioDAOToUsuario() }
     }
 
-    override fun findById(id: UUID): Usuario? = transaction {
+    override fun findById(id: Int): Usuario = transaction {
         logger.debug { "findById($id) - buscando $id" }
         usuariosDAO.findById(id)
             ?.fromUsuarioDAOToUsuario() ?: throw UsuarioException("Usuario no encontrado con id: $id")
     }
 
     override fun save(entity: Usuario): Usuario = transaction {
-        val existe = usuariosDAO.findById(entity.uuid)
+        val existe = usuariosDAO.findById(entity.id)
 
         existe?.let {
             update(entity, existe)
@@ -37,7 +36,7 @@ class UsuariosRepository(
     }
 
     override fun delete(entity: Usuario): Boolean = transaction {
-        val existe = usuariosDAO.findById(entity.uuid) ?: return@transaction false
+        val existe = usuariosDAO.findById(entity.id) ?: return@transaction false
         logger.debug { "delete($entity) - borrando" }
         existe.delete()
         true
@@ -45,7 +44,8 @@ class UsuariosRepository(
 
     private fun insert(entity: Usuario): Usuario {
         logger.debug { "save($entity) - creando" }
-        return usuariosDAO.new(entity.uuid) {
+        return usuariosDAO.new(entity.id) {
+            uuid = entity.uuid
             nombre = entity.nombre
             apellido = entity.apellido
             email = entity.email
@@ -57,6 +57,7 @@ class UsuariosRepository(
     private fun update(entity: Usuario, existe: UsuariosDAO): Usuario {
         logger.debug { "save($entity) - actualizando" }
         return existe.apply {
+            uuid = entity.uuid
             nombre = entity.nombre
             apellido = entity.apellido
             email = entity.email
