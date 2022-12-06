@@ -1,22 +1,28 @@
 package entities.tareas
 
-import org.jetbrains.exposed.dao.UUIDEntity
-import org.jetbrains.exposed.dao.UUIDEntityClass
+import entities.PedidosDAO
+import entities.PedidosTable
+import org.jetbrains.exposed.dao.IntEntity
+import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
-import org.jetbrains.exposed.dao.id.UUIDTable
-import java.util.*
+import org.jetbrains.exposed.dao.id.IntIdTable
 
-object TareasPersonalizacionTable: UUIDTable("TAREAS_PERSONALIZACION") {
-    val precio = reference("precio", TareasTable)
+
+object TareasPersonalizacionTable: IntIdTable("TAREAS_PERSONALIZACION") {
+    val uuid = uuid("uuid").uniqueIndex()
+    val precio = float("precio")
+    val pedido = reference("pedido", PedidosTable)
     val peso = float("peso")
     val balance = float("balance")
     val rigidez = float("rigidez")
 }
 
-class TareasPersonalizacionDAO(id: EntityID<UUID>): UUIDEntity(id) {
+class TareasPersonalizacionDAO(id: EntityID<Int>): IntEntity(id) {
 
-    companion object : UUIDEntityClass<TareasEncordadoDAO>(TareasPersonalizacionTable)
-    var precio by TareasDAO referencedOn TareasPersonalizacionTable.precio
+    companion object : IntEntityClass<TareasEncordadoDAO>(TareasPersonalizacionTable)
+    var uuid by TareasPersonalizacionTable.uuid
+    var precio by TareasPersonalizacionTable.precio
+    var pedido by PedidosDAO referencedOn TareasPersonalizacionTable.pedido
     var peso by TareasPersonalizacionTable.peso
     var balance by TareasPersonalizacionTable.balance
     var rigidez by TareasPersonalizacionTable.rigidez

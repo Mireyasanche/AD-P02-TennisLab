@@ -3,15 +3,16 @@ package models.tareas
 import java.util.*
 
 class TareaEncordado(
-    id: Int,
-    uuid: UUID,
-    precio: Float,
+    override val id: Int,
+    override val uuid: UUID,
+    override val precio: Float,
+    override val pedido: UUID,
     val tensionHorizontal: Float,
     val cordajeHorizontal: String,
     val tensionVertical: Float,
     val cordajeVertical: String,
     val nudos: NumeroNudos
-    ): Tarea(id, uuid, precio)
+    ): Tarea
 
 enum class NumeroNudos(numeroNudos: String) {
     DOS("DOS"), CUATRO("CUATRO");
