@@ -2,6 +2,7 @@ package dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import models.Pedido
 
 @Serializable
 @SerialName("Pedido")
@@ -16,3 +17,17 @@ data class PedidoDTO(
     val fechaEntrega: String,
     val precio: Float
 )
+
+fun Pedido.toDTO(): PedidoDTO {
+    return PedidoDTO(
+        id = id,
+        uuid = uuid.toString(),
+        estado = estado.toString(),
+        encordador = encordador.toString(),
+        fechaTope = fechaTope.toString(),
+        fechaEntrega = fechaEntrega.toString(),
+        fechaProgramada = fechaProgramada.toString(),
+        fechaEntrada = fechaEntrada.toString(),
+        precio = precio
+    )
+}
