@@ -13,7 +13,7 @@ class TurnosRepository: ITurnosRepository {
         logger.debug { "findAll()" }
         var turnos = mutableListOf<Turno>()
         HibernateManager.query {
-            val query: TypedQuery<Turno> = manager.createNamedQuery("Turnos.findAll()", Turno::class.java)
+            val query: TypedQuery<Turno> = manager.createNamedQuery("Turno.findAll", Turno::class.java)
             turnos = query.resultList
         }
         return turnos

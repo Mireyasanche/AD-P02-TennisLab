@@ -10,8 +10,8 @@ import javax.persistence.*
 @Entity
 @Table(name = "MAQUINA_PERSONALIZAR")
 @NamedQuery(name = "MaquinaPersonalizar.findAll", query = "SELECT m FROM MaquinaPersonalizar m")
-class MaquinaPersonalizar(
-    @Id @GeneratedValue
+data class MaquinaPersonalizar(
+    @Id
     override val id : Int,
     @Column(name = "uuid")
     @Type(type = "uuid-char")
@@ -23,7 +23,7 @@ class MaquinaPersonalizar(
     @CreationTimestamp
     override val fechaAdquisicion: LocalDate,
     override val numeroSerie: Int,
-    @OneToOne
+    @OneToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "turno_id", referencedColumnName = "id", nullable = true)
     override val turno: Turno,
     val mideManiobrabilidad: Boolean,

@@ -1,24 +1,19 @@
 package controllers
 
-import entities.PedidosDAO
-import entities.tareas.TareasEncordadoDAO
-import entities.tareas.TareasPersonalizacionDAO
 import models.tareas.TareaEncordado
 import models.tareas.TareaPersonalizacion
 import repositories.tareas.TareasEncordadoRepository
 import repositories.tareas.TareasPersonalizacionRepository
 
 class TareasController(
-    private val tareasEncordadoRepository: TareasEncordadoRepository =
-        TareasEncordadoRepository(TareasEncordadoDAO, PedidosDAO),
-    private val tareasPersonalizacionRepository: TareasPersonalizacionRepository =
-        TareasPersonalizacionRepository(TareasPersonalizacionDAO, PedidosDAO)
+    private val tareasEncordadoRepository: TareasEncordadoRepository = TareasEncordadoRepository(),
+    private val tareasPersonalizacionRepository: TareasPersonalizacionRepository = TareasPersonalizacionRepository()
 ) {
     fun getAllTareasEncordado(): List<TareaEncordado> {
         return tareasEncordadoRepository.findAll()
     }
 
-    fun getTareaEncordadoById(id: Int): TareaEncordado {
+    fun getTareaEncordadoById(id: Int): TareaEncordado? {
         return tareasEncordadoRepository.findById(id)
     }
 
@@ -34,7 +29,7 @@ class TareasController(
         return tareasPersonalizacionRepository.findAll()
     }
 
-    fun getTareaPersonalizacionById(id: Int): TareaPersonalizacion {
+    fun getTareaPersonalizacionById(id: Int): TareaPersonalizacion? {
         return tareasPersonalizacionRepository.findById(id)
     }
 

@@ -1,8 +1,10 @@
 import controllers.*
 import db.*
+import dto.PedidoDTO
 import dto.toDTO
 import models.TipoEstado
 import services.StorageJSON
+import utils.ApplicationProperties
 
 fun main() {
     initDataBase()
@@ -39,6 +41,7 @@ fun main() {
         tareasController.saveTareaPersonalizacion(tarea)
     }
 
+
     getMaquinasEncordar().forEach { maquina ->
         maquinasControllers.saveMaquinaEncordar(maquina)
     }
@@ -48,8 +51,9 @@ fun main() {
     }
 
     //Información completa en JSON de un pedido.
-    val pedido = pedidosControllers.getPedido(1).toDTO()
-    serviceJSON.writePedido("Informacion_completa_pedido", listOf(pedido))
+    val pedido = pedidosControllers.getPedido(2)?.toDTO()
+    serviceJSON.writePedido("Informacion_completa_pedido", listOf(pedido!!))
+
 
     //Listado de pedidos pendientes en JSON.
     val pedidosPendientes = pedidosControllers
