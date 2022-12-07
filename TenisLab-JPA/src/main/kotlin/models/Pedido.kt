@@ -1,16 +1,39 @@
 package models
 
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.Type
 import java.time.LocalDate
 import java.util.*
+import javax.persistence.*
 
+@Entity
+@Table(name = "PEDIDO")
+@NamedQuery(name = "Pedido.findAll", query = "SELECT p FROM Pedido p")
 data class Pedido(
-    val id: Int,
+    @Id @GeneratedValue
+    val id : Int,
+    @Column(name = "uuid")
+    @Type(type = "uuid-char")
     val uuid: UUID,
     val estado: TipoEstado,
+    @OneToOne
+    @JoinColumn(name = "encordador_id", referencedColumnName = "id", nullable = true)
     val encordador: Usuario,
+    @Column(name = "fecha_tope")
+    @Type(type = "org.hibernate.type.LocalDateType")
+    @CreationTimestamp
     val fechaTope: LocalDate,
+    @Column(name = "fecha_entrada")
+    @Type(type = "org.hibernate.type.LocalDateType")
+    @CreationTimestamp
     val fechaEntrada: LocalDate,
+    @Column(name = "fecha_programada")
+    @Type(type = "org.hibernate.type.LocalDateType")
+    @CreationTimestamp
     val fechaProgramada: LocalDate,
+    @Column(name = "fecha_entrega")
+    @Type(type = "org.hibernate.type.LocalDateType")
+    @CreationTimestamp
     val fechaEntrega: LocalDate,
     val precio: Float
 )

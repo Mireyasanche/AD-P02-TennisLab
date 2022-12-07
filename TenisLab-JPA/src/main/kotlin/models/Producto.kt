@@ -1,15 +1,26 @@
 package models
 
+import org.hibernate.annotations.Type
 import java.util.*
+import javax.persistence.*
 
+
+@Entity
+@Table(name = "PRODUCTO")
+@NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p")
 data class Producto(
-    val id: Int,
+    @Id @GeneratedValue
+    val id : Int,
+    @Column(name = "uuid")
+    @Type(type = "uuid-char")
     val uuid: UUID,
     val tipoProducto: TipoProducto,
     val marca: String,
     val modelo: String,
     val precio: Float,
     val stock: Int,
+    @ManyToOne
+    @JoinColumn(name = "pedido_id", referencedColumnName = "id", nullable = true)
     val pedido: Pedido
 )
 

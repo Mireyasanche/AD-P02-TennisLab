@@ -1,10 +1,17 @@
 package models
 
+import org.hibernate.annotations.Type
 import java.util.*
-import javax.persistence.Entity
+import javax.persistence.*
 
+@Entity
+@Table(name = "USUARIO")
+@NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
 data class Usuario(
+    @Id @GeneratedValue
     val id : Int,
+    @Column(name = "uuid")
+    @Type(type = "uuid-char")
     val uuid: UUID,
     val nombre: String,
     val apellido: String,
