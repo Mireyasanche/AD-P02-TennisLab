@@ -22,7 +22,7 @@ class PedidosDAO(id: EntityID<Int>) : IntEntity(id) {
 
     var uuid by PedidosTable.uuid
     var estado by PedidosTable.estado
-    var encordador by UsuariosDAO referencedOn UsuariosTable.id
+    var encordador by UsuariosDAO referencedOn PedidosTable.encordador
     var fechaTope by PedidosTable.fechaTope
     var fechaEntrada by PedidosTable.fechaEntrada
     var fechaProgramada by PedidosTable.fechaProgramada
