@@ -1,17 +1,29 @@
 package models.maquinas
 
 import models.Turno
+import org.hibernate.annotations.Type
 import java.time.LocalDate
 import java.util.*
+import javax.persistence.*
 
+@Entity
+@Table(name = "MAQUINAS_ENCORDAR")
 class MaquinaEncordar(
+    @Id @GeneratedValue
     override val id: Int,
+
+    @Column(name = "uuid")
+    @Type(type = "uuid-char")
     override val uuid: UUID,
     override val marca: String,
     override val modelo: String,
     override val fechaAdquisicion: LocalDate,
     override val numeroSerie: Int,
+
+    @OneToOne
+    @JoinColumn(name = "turno_id", referencedColumnName = "id", nullable = false)
     override val turno: Turno,
+
     val tipo: TipoEncordaje,
     val tensionMaxima: Float,
     val tensionMinima: Float,

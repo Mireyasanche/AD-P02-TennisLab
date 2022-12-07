@@ -1,6 +1,7 @@
 package models
 
 import java.util.*
+import javax.persistence.Entity
 
 data class Usuario(
     val id : Int,
