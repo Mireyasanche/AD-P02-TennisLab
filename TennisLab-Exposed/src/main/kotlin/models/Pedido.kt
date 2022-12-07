@@ -17,14 +17,14 @@ data class Pedido(
 
 enum class TipoEstado(estado: String) {
     RECIBIDO("RECIBIDO"),
-    EN_PROCESO("EN PROCESO"),
+    EN_PROCESO("EN_PROCESO"),
     TERMINADO("TERMINADO");
 
     companion object {
         fun from(estado: String): TipoEstado {
             return when (estado.uppercase()) {
                 "RECIBIDO" -> RECIBIDO
-                "EN PROCESO" -> EN_PROCESO
+                "EN_PROCESO" -> EN_PROCESO
                 "TERMINADO" -> TERMINADO
                 else -> throw IllegalArgumentException("Estado no reconocido.")
             }

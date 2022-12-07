@@ -22,12 +22,13 @@ object MaquinasPersonalizarTable : IntIdTable("MAQUINAS_PERSONALIZAR") {
 
 class MaquinasPersonalizarDAO(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<MaquinasPersonalizarDAO>(MaquinasPersonalizarTable)
+
     var uuid by MaquinasPersonalizarTable.uuid
     var marca by MaquinasPersonalizarTable.marca
     var modelo by MaquinasPersonalizarTable.modelo
     var fechaAdquisicion by MaquinasPersonalizarTable.fechaAdquisicion
     var numeroSerie by MaquinasPersonalizarTable.numeroSerie
-    var turno by TurnosDAO referencedOn MaquinasEncordarTable.turno
+    var turno by TurnosDAO referencedOn MaquinasPersonalizarTable.turno
     var mideManiobrabilidad by MaquinasPersonalizarTable.mideManiobrabilidad
     var balance by MaquinasPersonalizarTable.balance
     var rigidez by MaquinasPersonalizarTable.rigidez
