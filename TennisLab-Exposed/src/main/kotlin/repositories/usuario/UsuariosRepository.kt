@@ -7,6 +7,7 @@ import models.Usuario
 import mu.KotlinLogging
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.sql.transactions.transaction
+import services.passwordCodification
 
 class UsuariosRepository(
     private val usuariosDAO: IntEntityClass<UsuariosDAO>
@@ -49,7 +50,7 @@ class UsuariosRepository(
             nombre = entity.nombre
             apellido = entity.apellido
             email = entity.email
-            contrasena = entity.contrasena
+            contrasena = passwordCodification(entity.contrasena)
             perfil = entity.perfil
         }.fromUsuarioDAOToUsuario()
     }

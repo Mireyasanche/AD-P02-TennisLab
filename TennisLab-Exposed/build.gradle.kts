@@ -31,6 +31,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
     //Dokka para sustituir a JDOC y KDOC
     implementation("org.jetbrains.dokka:kotlin-as-java-plugin:1.7.20")
+    //Codificación contraseñas
+    implementation("com.google.guava:guava:31.1-jre")
 }
 
 tasks.test {
