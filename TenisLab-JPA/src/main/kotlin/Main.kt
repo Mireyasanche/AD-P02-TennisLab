@@ -1,4 +1,3 @@
-import config.AppConfig
 import controllers.*
 import db.*
 import dto.toDTO
@@ -7,6 +6,7 @@ import services.StorageJSON
 
 fun main() {
     initDataBase()
+
     val maquinasControllers = MaquinasController()
     val pedidosControllers = PedidosController()
     val productosController = ProductosController()
@@ -78,13 +78,11 @@ fun main() {
         .sortedBy { it.comienzo }
         .map { it.toDTO() }
     serviceJSON.writeTurno("listado_asignaciones_encordadores_por_fecha", asignaciones)
-
 }
 
 fun initDataBase() {
-    val appConfig = AppConfig.fromPropertiesFile("src/main/resources/config.properties")
-    println("Configuración: $appConfig")
-
-    DataBaseManager.init(appConfig)
-
+    val properties = ApplicationProperties()
+    logger.debug { "Leyendo fichero de configuración..." + properties.readProperty("app.title") }
+    HibernateManager.open()
+    HibernateManager.close()
 }
