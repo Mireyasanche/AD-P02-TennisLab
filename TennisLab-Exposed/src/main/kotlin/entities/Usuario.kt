@@ -11,7 +11,7 @@ object UsuariosTable : IntIdTable("USUARIOS") {
     val nombre = varchar("nombre", 50)
     val apellido = varchar("apellido", 50)
     val email = varchar("email", 50)
-    val contrasena = varchar("contrasena", 20)
+    val contrasena = varchar("contrasena", 255)
     val perfil = enumeration<TipoUsuario>("perfil")
 }
 
