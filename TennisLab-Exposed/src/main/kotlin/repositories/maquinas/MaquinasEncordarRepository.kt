@@ -38,8 +38,11 @@ class MaquinasEncordarRepository(
         }
     }
 
-    override fun delete(entity: MaquinaEncordar): Boolean {
-        TODO("Not yet implemented")
+    override fun delete(entity: MaquinaEncordar): Boolean = transaction {
+        val existe = maquinasEncordarDAO.findById(entity.id) ?: return@transaction false
+        logger.debug { "delete($entity) - borrando" }
+        existe.delete()
+        true
     }
 
     private fun insert(entity: MaquinaEncordar): MaquinaEncordar {

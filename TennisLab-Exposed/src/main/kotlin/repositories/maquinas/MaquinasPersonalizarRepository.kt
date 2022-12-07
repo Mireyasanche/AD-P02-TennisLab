@@ -38,8 +38,11 @@ class MaquinasPersonalizarRepository(
         }
     }
 
-    override fun delete(entity: MaquinaPersonalizar): Boolean {
-        TODO("Not yet implemented")
+    override fun delete(entity: MaquinaPersonalizar): Boolean = transaction {
+        val existe = maquinasPersonalizarDAO.findById(entity.id) ?: return@transaction false
+        logger.debug { "delete($entity) - borrando" }
+        existe.delete()
+        true
     }
 
     private fun insert(entity: MaquinaPersonalizar): MaquinaPersonalizar {

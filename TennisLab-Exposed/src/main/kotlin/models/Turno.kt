@@ -8,5 +8,5 @@ data class Turno(
     val uuid: UUID,
     val comienzo: LocalDateTime,
     val final: LocalDateTime,
-    val encordador: Usuario
+    var encordador: Usuario
 )

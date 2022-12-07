@@ -37,9 +37,12 @@ dependencies {
 
     // Dokka para sustituir a JDOC y KDOC
     implementation("org.jetbrains.dokka:kotlin-as-java-plugin:1.7.20")
-    
+
     // Codificación contraseñas
     implementation("com.google.guava:guava:31.1-jre")
+
+    // Mockito
+    testImplementation("io.mockk:mockk:1.13.2")
 }
 
 tasks.test {
