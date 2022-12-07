@@ -8,7 +8,7 @@ import javax.persistence.*
 @Table(name = "USUARIO")
 @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
 data class Usuario(
-    @Id @GeneratedValue
+    @Id
     val id : Int,
     @Column(name = "uuid")
     @Type(type = "uuid-char")

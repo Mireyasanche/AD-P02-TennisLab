@@ -1,16 +1,10 @@
 package controllers
 
-import entities.PedidosDAO
-import entities.ProductosDAO
 import models.Producto
 import repositories.producto.ProductosRepository
 
 class ProductosController(
-    private val productosRepository: ProductosRepository = ProductosRepository(
-        ProductosDAO,
-        PedidosDAO
-
-)
+    private val productosRepository: ProductosRepository = ProductosRepository()
 ) {
     fun getProductos(): List<Producto> {
         return productosRepository.findAll()

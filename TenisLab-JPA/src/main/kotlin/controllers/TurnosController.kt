@@ -1,18 +1,16 @@
 package controllers
 
-import entities.TurnosDAO
-import entities.UsuariosDAO
 import models.Turno
 import repositories.turno.TurnosRepository
 
 class TurnosController(
-    private val turnosRepository: TurnosRepository = TurnosRepository(TurnosDAO, UsuariosDAO)
+    private val turnosRepository: TurnosRepository = TurnosRepository()
 ) {
     fun getTurnos(): List<Turno> {
         return turnosRepository.findAll()
     }
 
-    fun getTurnoById(id: Int): Turno {
+    fun getTurnoById(id: Int): Turno? {
         return turnosRepository.findById(id)
     }
 

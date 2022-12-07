@@ -39,8 +39,8 @@ class TareasEncordadoRepository : ITareasEncordadoRepository{
         var result = false
         logger.debug { "delete($entity)" }
         HibernateManager.transaction {
-            val usuario = manager.find(TareaEncordado::class.java, entity.id)
-            usuario?.let {
+            val tarea = manager.find(TareaEncordado::class.java, entity.id)
+            tarea?.let {
                 manager.remove(it)
                 result = true
             }

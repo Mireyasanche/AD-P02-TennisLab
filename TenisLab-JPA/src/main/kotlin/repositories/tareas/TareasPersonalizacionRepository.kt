@@ -1,7 +1,6 @@
 package repositories.tareas
 
 import db.HibernateManager
-import models.tareas.TareaEncordado
 import models.tareas.TareaPersonalizacion
 import mu.KotlinLogging
 import javax.persistence.TypedQuery

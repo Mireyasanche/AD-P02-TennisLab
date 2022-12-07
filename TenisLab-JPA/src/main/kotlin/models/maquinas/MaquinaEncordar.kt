@@ -9,8 +9,8 @@ import javax.persistence.*
 @Entity
 @Table(name = "MAQUINAS_ENCORDAR")
 @NamedQuery(name = "MaquinaEncordar.findAll", query = "SELECT m FROM MaquinaEncordar m")
-class MaquinaEncordar(
-    @Id @GeneratedValue
+data class MaquinaEncordar(
+    @Id
     override val id: Int,
 
     @Column(name = "uuid")
@@ -21,7 +21,7 @@ class MaquinaEncordar(
     override val fechaAdquisicion: LocalDate,
     override val numeroSerie: Int,
 
-    @OneToOne
+    @OneToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "turno_id", referencedColumnName = "id", nullable = false)
     override val turno: Turno,
 

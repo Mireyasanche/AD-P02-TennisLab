@@ -8,8 +8,8 @@ import javax.persistence.*
 @Entity
 @Table(name = "TAREAS_ENCORDADO")
 @NamedQuery(name = "TareaEncordado.findAll", query = "SELECT t FROM TareaEncordado t")
-class TareaEncordado(
-    @Id @GeneratedValue
+data class TareaEncordado(
+    @Id
     override val id: Int,
 
     @Column(name = "uuid")
@@ -18,7 +18,7 @@ class TareaEncordado(
 
     override val precio: Float,
 
-    @OneToMany
+    @ManyToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "pedido_id", referencedColumnName = "id", nullable = false)
     override val pedido: Pedido,
     val tensionHorizontal: Float,

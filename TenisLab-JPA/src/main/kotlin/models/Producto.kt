@@ -9,7 +9,7 @@ import javax.persistence.*
 @Table(name = "PRODUCTO")
 @NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p")
 data class Producto(
-    @Id @GeneratedValue
+    @Id
     val id : Int,
     @Column(name = "uuid")
     @Type(type = "uuid-char")
@@ -19,7 +19,7 @@ data class Producto(
     val modelo: String,
     val precio: Float,
     val stock: Int,
-    @ManyToOne
+    @ManyToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "pedido_id", referencedColumnName = "id", nullable = true)
     val pedido: Pedido
 )

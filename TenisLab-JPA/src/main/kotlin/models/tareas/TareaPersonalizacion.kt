@@ -8,8 +8,8 @@ import javax.persistence.*
 @Entity
 @Table(name = "TAREAS_PERSONALIZACION")
 @NamedQuery(name = "TareaPersonalizacion.findAll", query = "SELECT t FROM TareaPersonalizacion t")
-class TareaPersonalizacion(
-    @Id @GeneratedValue
+data class TareaPersonalizacion(
+    @Id
     override val id: Int,
 
     @Column(name = "uuid")
@@ -18,7 +18,7 @@ class TareaPersonalizacion(
 
     override val precio: Float,
 
-    @OneToMany
+    @ManyToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "pedido_id", referencedColumnName = "id", nullable = false)
     override val pedido: Pedido,
     val peso: Float,

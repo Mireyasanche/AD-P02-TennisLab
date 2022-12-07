@@ -6,14 +6,8 @@ import repositories.maquinas.MaquinasEncordarRepository
 import repositories.maquinas.MaquinasPersonalizarRepository
 
 class MaquinasController(
-    private val maquinasEncordarRepository: MaquinasEncordarRepository = MaquinasEncordarRepository(
-        MaquinasEncordarDAO,
-        TurnosDAO
-    ),
-    private val maquinasPersonalizarRepository: MaquinasPersonalizarRepository = MaquinasPersonalizarRepository(
-        MaquinasPersonalizarDAO,
-        TurnosDAO
-    )
+    private val maquinasEncordarRepository: MaquinasEncordarRepository = MaquinasEncordarRepository(),
+    private val maquinasPersonalizarRepository: MaquinasPersonalizarRepository = MaquinasPersonalizarRepository()
 
 ){
 

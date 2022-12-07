@@ -10,7 +10,7 @@ import javax.persistence.*
 @Table(name = "TURNOS")
 @NamedQuery(name = "Turno.findAll", query = "SELECT t FROM Turno t")
 data class Turno(
-    @Id @GeneratedValue
+    @Id
     val id: Int,
 
     @Column(name = "uuid")
