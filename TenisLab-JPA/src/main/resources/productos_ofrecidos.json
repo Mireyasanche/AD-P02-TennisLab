@@ -1,102 +1,102 @@
 [
     {
         "id": 0,
-        "uuid": "2283104d-1793-4ba9-b224-f78978a04b44",
+        "uuid": "93e50abb-0dd5-4c4b-aec8-c45ac683e9b6",
         "tipoProducto": "COMPLEMENTO",
         "marca": "ADIDAS",
         "modelo": "33-A",
         "precio": 15.5,
         "stock": 35,
-        "pedido": "Pedido(id=0, uuid=784b3e87-af3f-44d6-9921-26a1f78a6cdc, estado=EN_PROCESO, encordador=Usuario(id=2, uuid=b921e006-d697-426a-b16f-06d493754f27, nombre=María, apellido=Sanz, email=maria@sanz.com, contrasena=1234, perfil=ENCORDADOR), fechaTope=2022-12-15, fechaEntrada=2022-11-10, fechaProgramada=2022-12-10, fechaEntrega=2022-12-10, precio=120.0)"
+        "pedido": "Pedido(id=0, uuid=5c9b3b12-a271-444a-ad5c-3dfac18b11ab, estado=EN_PROCESO, encordador=Usuario(id=2, uuid=0d9b6d0b-caa0-45e5-a36f-d6b47a573fcf, nombre=María, apellido=Sanz, email=maria@sanz.com, contrasena=1234, perfil=ENCORDADOR), fechaTope=2022-12-15, fechaEntrada=2022-11-10, fechaProgramada=2022-12-10, fechaEntrega=2022-12-10, precio=120.0)"
     },
     {
         "id": 1,
-        "uuid": "0c2ef6dc-57a3-4a09-a563-2015790b67e5",
+        "uuid": "a29b0c25-724d-4efa-a11c-fca41a3cc513",
         "tipoProducto": "RAQUETA",
         "marca": "DUNLOP",
         "modelo": "XXL",
         "precio": 20.0,
         "stock": 10,
-        "pedido": "Pedido(id=0, uuid=784b3e87-af3f-44d6-9921-26a1f78a6cdc, estado=EN_PROCESO, encordador=Usuario(id=2, uuid=b921e006-d697-426a-b16f-06d493754f27, nombre=María, apellido=Sanz, email=maria@sanz.com, contrasena=1234, perfil=ENCORDADOR), fechaTope=2022-12-15, fechaEntrada=2022-11-10, fechaProgramada=2022-12-10, fechaEntrega=2022-12-10, precio=120.0)"
+        "pedido": "Pedido(id=0, uuid=5c9b3b12-a271-444a-ad5c-3dfac18b11ab, estado=EN_PROCESO, encordador=Usuario(id=2, uuid=0d9b6d0b-caa0-45e5-a36f-d6b47a573fcf, nombre=María, apellido=Sanz, email=maria@sanz.com, contrasena=1234, perfil=ENCORDADOR), fechaTope=2022-12-15, fechaEntrada=2022-11-10, fechaProgramada=2022-12-10, fechaEntrega=2022-12-10, precio=120.0)"
     },
     {
         "id": 2,
-        "uuid": "9b223a9d-edb1-47ce-9a91-61153a5f30d5",
+        "uuid": "e85c3dcf-f23e-4e5d-a623-7e227e019d61",
         "tipoProducto": "COMPLEMENTO",
         "marca": "J'HAYBER",
         "modelo": "Ultimate",
         "precio": 9.99,
         "stock": 20,
-        "pedido": "Pedido(id=1, uuid=ba88259c-45ed-419e-aa55-3518bc031605, estado=EN_PROCESO, encordador=Usuario(id=2, uuid=b921e006-d697-426a-b16f-06d493754f27, nombre=María, apellido=Sanz, email=maria@sanz.com, contrasena=1234, perfil=ENCORDADOR), fechaTope=2022-12-27, fechaEntrada=2022-12-01, fechaProgramada=2022-12-20, fechaEntrega=2022-12-20, precio=70.95)"
+        "pedido": "Pedido(id=1, uuid=4d3633b1-194e-4387-9cd1-929bd2c29b40, estado=EN_PROCESO, encordador=Usuario(id=2, uuid=0d9b6d0b-caa0-45e5-a36f-d6b47a573fcf, nombre=María, apellido=Sanz, email=maria@sanz.com, contrasena=1234, perfil=ENCORDADOR), fechaTope=2022-12-27, fechaEntrada=2022-12-01, fechaProgramada=2022-12-20, fechaEntrega=2022-12-20, precio=70.95)"
     },
     {
         "id": 3,
-        "uuid": "3ed428f6-948b-437a-80fb-2d0154931367",
+        "uuid": "f361d4c0-d474-4eb4-a393-16879ff81892",
         "tipoProducto": "CORDAJE",
         "marca": "JOMA",
         "modelo": "5-7B",
         "precio": 4.99,
         "stock": 100,
-        "pedido": "Pedido(id=1, uuid=ba88259c-45ed-419e-aa55-3518bc031605, estado=EN_PROCESO, encordador=Usuario(id=2, uuid=b921e006-d697-426a-b16f-06d493754f27, nombre=María, apellido=Sanz, email=maria@sanz.com, contrasena=1234, perfil=ENCORDADOR), fechaTope=2022-12-27, fechaEntrada=2022-12-01, fechaProgramada=2022-12-20, fechaEntrega=2022-12-20, precio=70.95)"
+        "pedido": "Pedido(id=1, uuid=4d3633b1-194e-4387-9cd1-929bd2c29b40, estado=EN_PROCESO, encordador=Usuario(id=2, uuid=0d9b6d0b-caa0-45e5-a36f-d6b47a573fcf, nombre=María, apellido=Sanz, email=maria@sanz.com, contrasena=1234, perfil=ENCORDADOR), fechaTope=2022-12-27, fechaEntrada=2022-12-01, fechaProgramada=2022-12-20, fechaEntrega=2022-12-20, precio=70.95)"
     },
     {
         "id": 4,
-        "uuid": "50b4c846-41e0-461c-a2d7-50fcd1efc740",
+        "uuid": "ecd6131d-ff90-414b-b8ce-7ce8637d09af",
         "tipoProducto": "CORDAJE",
         "marca": "ADIDAS",
         "modelo": "Sport",
         "precio": 79.95,
         "stock": 18,
-        "pedido": "Pedido(id=2, uuid=bbf93665-36ec-40b1-b915-21ae5cbaf080, estado=RECIBIDO, encordador=Usuario(id=4, uuid=0ec25e51-9ca4-435e-a261-073203cd2242, nombre=Ana, apellido=Carlos, email=ana@carlos.com, contrasena=1234, perfil=ENCORDADOR), fechaTope=2023-01-05, fechaEntrada=2022-12-07, fechaProgramada=2023-01-04, fechaEntrega=2022-01-04, precio=57.0)"
+        "pedido": "Pedido(id=2, uuid=11bc9e1b-3898-4ed4-88cd-749cfcbc9328, estado=RECIBIDO, encordador=Usuario(id=4, uuid=c073a7ea-4096-427f-853c-e6bc186c26f5, nombre=Ana, apellido=Carlos, email=ana@carlos.com, contrasena=1234, perfil=ENCORDADOR), fechaTope=2023-01-05, fechaEntrada=2022-12-07, fechaProgramada=2023-01-04, fechaEntrega=2022-01-04, precio=57.0)"
     },
     {
         "id": 5,
-        "uuid": "008efd22-1df6-4562-b76a-6604dfc904ac",
+        "uuid": "666b83df-dca1-43a3-9aea-5e7bb90ed4f4",
         "tipoProducto": "RAQUETA",
         "marca": "BULLPADEL",
         "modelo": "2023",
         "precio": 1200.0,
         "stock": 1,
-        "pedido": "Pedido(id=2, uuid=bbf93665-36ec-40b1-b915-21ae5cbaf080, estado=RECIBIDO, encordador=Usuario(id=4, uuid=0ec25e51-9ca4-435e-a261-073203cd2242, nombre=Ana, apellido=Carlos, email=ana@carlos.com, contrasena=1234, perfil=ENCORDADOR), fechaTope=2023-01-05, fechaEntrada=2022-12-07, fechaProgramada=2023-01-04, fechaEntrega=2022-01-04, precio=57.0)"
+        "pedido": "Pedido(id=2, uuid=11bc9e1b-3898-4ed4-88cd-749cfcbc9328, estado=RECIBIDO, encordador=Usuario(id=4, uuid=c073a7ea-4096-427f-853c-e6bc186c26f5, nombre=Ana, apellido=Carlos, email=ana@carlos.com, contrasena=1234, perfil=ENCORDADOR), fechaTope=2023-01-05, fechaEntrada=2022-12-07, fechaProgramada=2023-01-04, fechaEntrega=2022-01-04, precio=57.0)"
     },
     {
         "id": 6,
-        "uuid": "d3feb5b6-35d4-4af6-bdc2-8d3c191559fe",
+        "uuid": "27185cf4-0a43-4f0e-b0a3-0f4852d7ad20",
         "tipoProducto": "RAQUETA",
         "marca": "DUNLOP",
         "modelo": "Origin",
         "precio": 12.0,
         "stock": 11,
-        "pedido": "Pedido(id=3, uuid=9b19e3df-edf2-443b-9583-80820dd7b56d, estado=TERMINADO, encordador=Usuario(id=2, uuid=b921e006-d697-426a-b16f-06d493754f27, nombre=María, apellido=Sanz, email=maria@sanz.com, contrasena=1234, perfil=ENCORDADOR), fechaTope=2022-12-01, fechaEntrada=2022-11-05, fechaProgramada=2022-11-28, fechaEntrega=2022-11-25, precio=50.15)"
+        "pedido": "Pedido(id=3, uuid=dcdd6f9e-4762-47b8-9c69-b6c2d9f545a0, estado=TERMINADO, encordador=Usuario(id=2, uuid=0d9b6d0b-caa0-45e5-a36f-d6b47a573fcf, nombre=María, apellido=Sanz, email=maria@sanz.com, contrasena=1234, perfil=ENCORDADOR), fechaTope=2022-12-01, fechaEntrada=2022-11-05, fechaProgramada=2022-11-28, fechaEntrega=2022-11-25, precio=50.15)"
     },
     {
         "id": 7,
-        "uuid": "b3ad3142-8075-4ba0-83de-20cee97a04e7",
+        "uuid": "8693ec11-719a-4edd-8b8f-7e1ad29a65e4",
         "tipoProducto": "COMPLEMENTO",
         "marca": "ASICS",
         "modelo": "Retro",
         "precio": 12.15,
         "stock": 89,
-        "pedido": "Pedido(id=3, uuid=9b19e3df-edf2-443b-9583-80820dd7b56d, estado=TERMINADO, encordador=Usuario(id=2, uuid=b921e006-d697-426a-b16f-06d493754f27, nombre=María, apellido=Sanz, email=maria@sanz.com, contrasena=1234, perfil=ENCORDADOR), fechaTope=2022-12-01, fechaEntrada=2022-11-05, fechaProgramada=2022-11-28, fechaEntrega=2022-11-25, precio=50.15)"
+        "pedido": "Pedido(id=3, uuid=dcdd6f9e-4762-47b8-9c69-b6c2d9f545a0, estado=TERMINADO, encordador=Usuario(id=2, uuid=0d9b6d0b-caa0-45e5-a36f-d6b47a573fcf, nombre=María, apellido=Sanz, email=maria@sanz.com, contrasena=1234, perfil=ENCORDADOR), fechaTope=2022-12-01, fechaEntrada=2022-11-05, fechaProgramada=2022-11-28, fechaEntrega=2022-11-25, precio=50.15)"
     },
     {
         "id": 8,
-        "uuid": "08f40191-14d8-4ba1-ae33-18ac9dde6a17",
+        "uuid": "46ebb935-c22d-4da5-ac3e-0ea5dcee34f6",
         "tipoProducto": "CORDAJE",
         "marca": "ASICS",
         "modelo": "Seller",
         "precio": 3.99,
         "stock": 96,
-        "pedido": "Pedido(id=4, uuid=b34d1688-1f15-40e0-a45e-31b100e0cadf, estado=TERMINADO, encordador=Usuario(id=4, uuid=0ec25e51-9ca4-435e-a261-073203cd2242, nombre=Ana, apellido=Carlos, email=ana@carlos.com, contrasena=1234, perfil=ENCORDADOR), fechaTope=2022-11-14, fechaEntrada=2022-09-05, fechaProgramada=2022-10-23, fechaEntrega=2022-10-23, precio=3590.72)"
+        "pedido": "Pedido(id=4, uuid=351dfed7-767a-4402-8ff7-5d15f51d9824, estado=TERMINADO, encordador=Usuario(id=4, uuid=c073a7ea-4096-427f-853c-e6bc186c26f5, nombre=Ana, apellido=Carlos, email=ana@carlos.com, contrasena=1234, perfil=ENCORDADOR), fechaTope=2022-11-14, fechaEntrada=2022-09-05, fechaProgramada=2022-10-23, fechaEntrega=2022-10-23, precio=3590.72)"
     },
     {
         "id": 9,
-        "uuid": "27edf2da-8e7a-48e3-8a56-35c19c9fa6ef",
+        "uuid": "b8bd5667-49a3-4ef8-b5d5-2818534ed736",
         "tipoProducto": "CORDAJE",
         "marca": "BABOLAT",
         "modelo": "2002",
         "precio": 8.75,
         "stock": 90,
-        "pedido": "Pedido(id=4, uuid=b34d1688-1f15-40e0-a45e-31b100e0cadf, estado=TERMINADO, encordador=Usuario(id=4, uuid=0ec25e51-9ca4-435e-a261-073203cd2242, nombre=Ana, apellido=Carlos, email=ana@carlos.com, contrasena=1234, perfil=ENCORDADOR), fechaTope=2022-11-14, fechaEntrada=2022-09-05, fechaProgramada=2022-10-23, fechaEntrega=2022-10-23, precio=3590.72)"
+        "pedido": "Pedido(id=4, uuid=351dfed7-767a-4402-8ff7-5d15f51d9824, estado=TERMINADO, encordador=Usuario(id=4, uuid=c073a7ea-4096-427f-853c-e6bc186c26f5, nombre=Ana, apellido=Carlos, email=ana@carlos.com, contrasena=1234, perfil=ENCORDADOR), fechaTope=2022-11-14, fechaEntrada=2022-09-05, fechaProgramada=2022-10-23, fechaEntrega=2022-10-23, precio=3590.72)"
     }
 ]

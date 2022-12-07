@@ -3,6 +3,7 @@ package mappers
 import entities.PedidosDAO
 import models.Pedido
 import models.TipoEstado
+import org.jetbrains.exposed.dao.id.EntityID
 
 fun PedidosDAO.fromPedidosDAOToPedidos(): Pedido {
     return Pedido(
