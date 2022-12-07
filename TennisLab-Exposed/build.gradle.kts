@@ -40,6 +40,11 @@ dependencies {
     
     // Codificación contraseñas
     implementation("com.google.guava:guava:31.1-jre")
+
+    // JUnit para tests
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.1")
+    testImplementation("io.mockk:mockk:1.12.4")
+
 }
 
 tasks.test {

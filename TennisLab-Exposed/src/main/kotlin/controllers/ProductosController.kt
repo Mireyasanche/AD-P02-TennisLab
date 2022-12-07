@@ -16,15 +16,15 @@ class ProductosController(
         return productosRepository.findAll()
     }
 
-    fun getProductos(id: Int): Producto? {
+    fun getProductoById(id: Int): Producto? {
         return productosRepository.findById(id)
     }
 
-    fun saveProductos(entity: Producto): Producto {
+    fun saveProducto(entity: Producto): Producto {
         return productosRepository.save(entity)
     }
 
-    fun deleteProductos(entity: Producto): Boolean {
+    fun deleteProducto(entity: Producto): Boolean {
         return productosRepository.delete(entity)
     }
 }

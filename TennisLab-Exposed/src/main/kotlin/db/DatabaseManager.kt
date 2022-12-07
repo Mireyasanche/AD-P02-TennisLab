@@ -7,10 +7,7 @@ import entities.maquinas.MaquinasPersonalizarTable
 import entities.tareas.TareasEncordadoTable
 import entities.tareas.TareasPersonalizacionTable
 import mu.KotlinLogging
-import org.jetbrains.exposed.sql.Database
-import org.jetbrains.exposed.sql.SchemaUtils
-import org.jetbrains.exposed.sql.StdOutSqlLogger
-import org.jetbrains.exposed.sql.addLogger
+import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 
 private val logger = KotlinLogging.logger {}
@@ -51,5 +48,51 @@ object DataBaseManager {
             UsuariosTable
         )
         logger.debug("Tables created")
+    }
+
+    fun dropTables() = transaction {
+        logger.debug { "Eliminando tablas de la base de datos" }
+
+        if (appConfig.jdbcshowSQL)
+            addLogger(StdOutSqlLogger) // Para que se vea el log de consulas a la base de datos
+
+        // Mis tablas
+        val tables = arrayOf(
+            MaquinasEncordarTable,
+            MaquinasPersonalizarTable,
+            PedidosTable,
+            ProductosTable,
+            TareasEncordadoTable,
+            TareasPersonalizacionTable,
+            TurnosTable,
+            UsuariosTable
+        )
+
+        SchemaUtils.drop(*tables)
+        logger.debug { "Tablas eliminadas (${tables.size}): ${tables.joinToString { it.tableName }}" }
+    }
+
+    fun clearTables() = transaction {
+        logger.debug { "Limpiando tablas de la base de datos" }
+
+        if (appConfig.jdbcshowSQL)
+            addLogger(StdOutSqlLogger) // Para que se vea el log de consulas a la base de datos
+
+        // Mis tablas
+        val tables = arrayOf(
+            MaquinasEncordarTable,
+            MaquinasPersonalizarTable,
+            PedidosTable,
+            ProductosTable,
+            TareasEncordadoTable,
+            TareasPersonalizacionTable,
+            TurnosTable,
+            UsuariosTable
+        )
+
+        tables.forEach {
+            it.deleteAll()
+        }
+        logger.debug { "Tablas limpiadas (${tables.size}): ${tables.joinToString { it.tableName }}" }
     }
 }
