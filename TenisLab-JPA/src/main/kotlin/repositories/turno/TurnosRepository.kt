@@ -3,6 +3,8 @@ package repositories.turno
 import models.Turno
 import mu.KotlinLogging
 import javax.persistence.TypedQuery
+import db.HibernateManager
+import db.HibernateManager.manager
 
 private val logger = KotlinLogging.logger {}
 
@@ -38,7 +40,7 @@ class TurnosRepository: ITurnosRepository {
         var result = false
         logger.debug { "delete($entity)" }
         HibernateManager.transaction {
-            val tenista = manager.find(Turno::class.java, entity.uuid)
+            val tenista = manager.find(Turno::class.java, entity.id)
             tenista?.let {
                 manager.remove(it)
                 result = true

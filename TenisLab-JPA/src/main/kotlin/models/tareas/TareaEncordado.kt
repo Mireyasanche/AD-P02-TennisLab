@@ -7,6 +7,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "TAREAS_ENCORDADO")
+@NamedQuery(name = "TareaEncordar.findAll", query = "SELECT t FROM TareaEncordado t")
 class TareaEncordado(
     @Id @GeneratedValue
     override val id: Int,

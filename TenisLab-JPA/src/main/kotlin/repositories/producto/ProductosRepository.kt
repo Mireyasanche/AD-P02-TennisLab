@@ -1,21 +1,51 @@
 package repositories.producto
 
+import db.HibernateManager
+import db.HibernateManager.manager
 import models.Producto
+import mu.KotlinLogging
+import javax.persistence.TypedQuery
 
-class ProductosRepository: IProductosRepository {
+private val logger = KotlinLogging.logger {}
+
+class ProductosRepository : IProductosRepository {
     override fun findAll(): List<Producto> {
-        TODO("Not yet implemented")
+        logger.debug { "findAll()" }
+        var productos = mutableListOf<Producto>()
+        HibernateManager.query {
+            val query: TypedQuery<Producto> = manager.createNamedQuery("Producto.findAll", Producto::class.java)
+            productos = query.resultList
+        }
+        return productos
     }
 
     override fun findById(id: Int): Producto? {
-        TODO("Not yet implemented")
+        logger.debug { "findById($id)" }
+        var producto: Producto? = null
+        HibernateManager.query {
+            producto = manager.find(Producto::class.java, id)
+        }
+        return producto
     }
 
     override fun save(entity: Producto): Producto {
-        TODO("Not yet implemented")
+        logger.debug { "save($entity)" }
+        HibernateManager.transaction {
+            manager.merge(entity)
+        }
+        return entity
     }
 
     override fun delete(entity: Producto): Boolean {
-        TODO("Not yet implemented")
+        var result = false
+        logger.debug { "delete($entity)" }
+        HibernateManager.transaction {
+            val producto = manager.find(Producto::class.java, entity.id)
+            producto?.let {
+                manager.remove(it)
+                result = true
+            }
+        }
+        return result
     }
 }

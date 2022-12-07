@@ -8,7 +8,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "TURNOS")
-@NamedQuery(name = "Turnos.findAll()", query = "SELECT t FROM Turno t")
+@NamedQuery(name = "Turno.findAll", query = "SELECT t FROM Turno t")
 data class Turno(
     @Id @GeneratedValue
     val id: Int,
