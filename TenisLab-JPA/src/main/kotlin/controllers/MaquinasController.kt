@@ -1,8 +1,5 @@
 package controllers
 
-import entities.TurnosDAO
-import entities.maquinas.MaquinasEncordarDAO
-import entities.maquinas.MaquinasPersonalizarDAO
 import models.maquinas.MaquinaEncordar
 import models.maquinas.MaquinaPersonalizar
 import repositories.maquinas.MaquinasEncordarRepository
