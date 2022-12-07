@@ -56,6 +56,7 @@ object DataBaseManager {
         if (appConfig.jdbcshowSQL)
             addLogger(StdOutSqlLogger) // Para que se vea el log de consulas a la base de datos
 
+        // Mis tablas
         val tables = arrayOf(
             MaquinasEncordarTable,
             MaquinasPersonalizarTable,
@@ -77,6 +78,7 @@ object DataBaseManager {
         if (appConfig.jdbcshowSQL)
             addLogger(StdOutSqlLogger) // Para que se vea el log de consulas a la base de datos
 
+        // Mis tablas
         val tables = arrayOf(
             MaquinasEncordarTable,
             MaquinasPersonalizarTable,
