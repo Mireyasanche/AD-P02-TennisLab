@@ -8,6 +8,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "MAQUINAS_ENCORDAR")
+@NamedQuery(name = "MaquinaEncordar.findAll", query = "SELECT m FROM MaquinaEncordar m")
 class MaquinaEncordar(
     @Id @GeneratedValue
     override val id: Int,
