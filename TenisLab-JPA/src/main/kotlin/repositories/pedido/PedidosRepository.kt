@@ -29,6 +29,11 @@ class PedidosRepository: IPedidosRepository {
     }
 
     override fun save(entity: Pedido): Pedido {
+        require(findAll()
+            .filter { it.encordador.id == entity.encordador.id }
+            .map { it.encordador }
+            .count() < 2 ) {"Este pedido no ha podido guardarse correctamente ya que su encordador asignado ya tiene dos pedidos asignados."}
+
         logger.debug { "save($entity)" }
         HibernateManager.transaction {
             manager.merge(entity)

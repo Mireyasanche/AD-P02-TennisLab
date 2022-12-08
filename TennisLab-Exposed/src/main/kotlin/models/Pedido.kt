@@ -7,6 +7,7 @@ data class Pedido(
     val id: Int,
     val uuid: UUID,
     val estado: TipoEstado,
+    //un encordador puede tener maximo dos pedidos activos
     val encordador: Usuario,
     val fechaTope: LocalDate,
     val fechaEntrada: LocalDate,

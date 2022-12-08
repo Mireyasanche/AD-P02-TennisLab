@@ -1,6 +1,7 @@
 package repositories.maquinas
 
 import entities.TurnosDAO
+import entities.UsuariosDAO
 import entities.maquinas.MaquinasEncordarDAO
 import exceptions.maquinas.MaquinaEncordarException
 import mappers.maquinas.fromMaquinaEncordarDAOToMaquinaEncordar
@@ -8,6 +9,7 @@ import models.maquinas.MaquinaEncordar
 import mu.KotlinLogging
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.sql.transactions.transaction
+import repositories.turno.TurnosRepository
 
 class MaquinasEncordarRepository(
     private val maquinasEncordarDAO: IntEntityClass<MaquinasEncordarDAO>,
@@ -15,6 +17,7 @@ class MaquinasEncordarRepository(
 
 ) : IMaquinasEncordarRepository {
     private val logger = KotlinLogging.logger {}
+    private val turnosRepository = TurnosRepository(turnosDAO, UsuariosDAO)
 
     override fun findAll(): List<MaquinaEncordar> = transaction {
         logger.debug { "findAll() - buscando todos" }
@@ -30,6 +33,11 @@ class MaquinasEncordarRepository(
 
     override fun save(entity: MaquinaEncordar): MaquinaEncordar = transaction {
         val existe = maquinasEncordarDAO.findById(entity.id)
+
+        val encordadorParaAsignar = entity.turno.encordador
+        val encordadoresAsignados = turnosRepository.findAll().filter { it.id == entity.turno.id}.map { it.encordador}
+        require(!encordadoresAsignados.contains(encordadorParaAsignar))
+        {"Esta máquina no ha podido añadirse porque el encordador que quiere asignarle ya esta utilizando otra máquina en ese turno."}
 
         existe?.let {
             update(entity, existe)

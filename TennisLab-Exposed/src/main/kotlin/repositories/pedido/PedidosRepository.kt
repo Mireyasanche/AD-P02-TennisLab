@@ -9,12 +9,15 @@ import models.Pedido
 import mu.KotlinLogging
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.sql.transactions.transaction
+import repositories.usuario.UsuariosRepository
 
 class PedidosRepository(
     private val pedidosDAO: IntEntityClass<PedidosDAO>,
     private val usuariosDAO: IntEntityClass<UsuariosDAO>,
+
 ) : IPedidosRepository {
     private val logger = KotlinLogging.logger {}
+    private val usuariosRepository =  UsuariosRepository(usuariosDAO)
 
     override fun findAll(): List<Pedido> = transaction {
         logger.debug { "findAll() - buscando todos " }
@@ -30,11 +33,17 @@ class PedidosRepository(
     override fun save(entity: Pedido): Pedido = transaction {
         val existe = pedidosDAO.findById(entity.id)
 
-        existe?.let {
-            update(entity, existe)
-        } ?: run {
-            insert(entity)
-        }
+        require(findAll()
+            .filter { it.encordador.id == entity.encordador.id }
+            .map { it.encordador }
+            .count() < 2 ) {"Este pedido no ha podido guardarse correctamente ya que su encordador asignado ya tiene dos pedidos asignados."}
+
+            existe?.let {
+                update(entity, existe)
+            } ?: run {
+                insert(entity)
+            }
+
     }
 
     override fun delete(entity: Pedido): Boolean = transaction {
