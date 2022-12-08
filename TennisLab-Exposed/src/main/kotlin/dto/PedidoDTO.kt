@@ -1,3 +1,7 @@
+/**
+ * @author Mireya Sánchez Pinzón
+ * @author Alejandro Sánchez Monzón
+ */
 package dto
 
 import kotlinx.serialization.SerialName
@@ -18,6 +22,12 @@ data class PedidoDTO(
     val precio: Float
 )
 
+/**
+ * Esta función de extensión de Pedido se ocupa de convertir el objeto de tipos transferencia de datos (DTO) para poder
+ * pasar la información del mismo a ficheros de una forma más sencilla, evitando los tipos complejos.
+ *
+ * @return PedidoDTO, el objeto convertido en DTO.
+ */
 fun Pedido.toDTO(): PedidoDTO {
     return PedidoDTO(
         id = id,

@@ -1,3 +1,7 @@
+/**
+ * @author Mireya Sánchez Pinzón
+ * @author Alejandro Sánchez Monzón
+ */
 package db
 
 import models.*
@@ -11,6 +15,12 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
 
+
+/**
+ * Función que contiene una lista de Usuarios con datos ficticios de prueba.
+ *
+ * @return La lista de Usuarios.
+ */
 fun getUsuariosInit() = listOf(
     Usuario(
         id = 0,
@@ -69,6 +79,11 @@ fun getUsuariosInit() = listOf(
 
 )
 
+/**
+ * Función que contiene una lista de Turnos con datos ficticios de prueba.
+ *
+ * @return La lista de Turnos.
+ */
 fun getTurnosInit() = listOf(
     Turno(
         id = 0,
@@ -93,6 +108,11 @@ fun getTurnosInit() = listOf(
     )
 )
 
+/**
+ * Función que contiene una lista de Productos con datos ficticios de prueba.
+ *
+ * @return La lista de Productos.
+ */
 fun getProductosInit() = listOf(
     Producto(
         id = 0,
@@ -196,6 +216,11 @@ fun getProductosInit() = listOf(
     )
 )
 
+/**
+ * Función que contiene una lista de Pedidos con datos ficticios de prueba.
+ *
+ * @return La lista de Pedidos.
+ */
 fun getPedidosInit() = listOf(
     Pedido(
         id = 0,
@@ -254,6 +279,11 @@ fun getPedidosInit() = listOf(
     )
 )
 
+/**
+ * Función que contiene una lista de Tareas de encordado con datos ficticios de prueba.
+ *
+ * @return La lista de Tareas de encordado.
+ */
 fun getTareasEncordadoInit() = listOf(
     TareaEncordado(
         id = 0,
@@ -279,6 +309,12 @@ fun getTareasEncordadoInit() = listOf(
     )
 )
 
+/**
+ * Función que contiene una lista de Tareas de personalización con datos ficticios de prueba.
+ *
+ * @return La lista de Tareas de personalización.
+ */
+
 fun getTareasPersonalizacion() = listOf(
     TareaPersonalizacion(
         id = 0,
@@ -300,6 +336,11 @@ fun getTareasPersonalizacion() = listOf(
     )
 )
 
+/**
+ * Función que contiene una lista de Máquinas de encordado con datos ficticios de prueba.
+ *
+ * @return La lista de Máquinas de encordado.
+ */
 fun getMaquinasEncordar() = listOf(
     MaquinaEncordar(
         id = 0,
@@ -327,6 +368,11 @@ fun getMaquinasEncordar() = listOf(
     )
 )
 
+/**
+ * Función que contiene una lista de Máquinas de personalización con datos ficticios de prueba.
+ *
+ * @return La lista de Máquinas de personalización.
+ */
 fun getMaquinasPersonalizar() = listOf(
     MaquinaPersonalizar(
         id = 0,

@@ -1,3 +1,7 @@
+/**
+ * @author Mireya Sánchez Pinzón
+ * @author Alejandro Sánchez Monzón
+ */
 import config.AppConfig
 import controllers.*
 import db.*
@@ -15,34 +19,42 @@ fun main() {
     val usuariosController = UsuariosController()
     val serviceJSON = StorageJSON()
 
+    //Inserción de los datos de usuarios en la base de datos
     getUsuariosInit().forEach { usuario ->
         usuariosController.saveUsuario(usuario)
     }
 
+    //Inserción de los datos de turnos en la base de datos
     getTurnosInit().forEach { turno ->
         turnosController.saveTurno(turno)
     }
 
+    //Inserción de los datos de pedidos en la base de datos
     getPedidosInit().forEach { pedido ->
         pedidosControllers.savePedido(pedido)
     }
 
+    //Inserción de los datos de productos en la base de datos
     getProductosInit().forEach { producto ->
         productosController.saveProducto(producto)
     }
 
+    //Inserción de los datos de tareas de encordado en la base de datos
     getTareasEncordadoInit().forEach { tarea ->
         tareasController.saveTareaEncordado(tarea)
     }
 
+    //Inserción de los datos de tareas de personalización en la base de datos
     getTareasPersonalizacion().forEach { tarea ->
         tareasController.saveTareaPersonalizacion(tarea)
     }
 
+    //Inserción de los datos de máquinas de encordado en la base de datos
     getMaquinasEncordar().forEach { maquina ->
         maquinasControllers.saveMaquinaEncordar(maquina)
     }
 
+    //Inserción de los datos de máquinas de personalización en la base de datos
     getMaquinasPersonalizar().forEach { maquina ->
         maquinasControllers.saveMaquinaPersonalizar(maquina)
     }
@@ -81,6 +93,12 @@ fun main() {
 
 }
 
+/**
+ * Método encargado de iniciar la base de datos y configurar todo en base al fichero ApplicationProperties
+ *
+ *
+ * @return Unit
+ */
 fun initDataBase() {
     val appConfig = AppConfig.fromPropertiesFile("src/main/resources/config.properties")
     println("Configuración: $appConfig")
