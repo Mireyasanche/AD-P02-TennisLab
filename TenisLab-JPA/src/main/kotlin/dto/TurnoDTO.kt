@@ -1,3 +1,8 @@
+/**
+ * @author Mireya Sánchez Pinzón
+ * @author Alejandro Sánchez Monzón
+ */
+
 package dto
 
 import kotlinx.serialization.SerialName
@@ -15,6 +20,12 @@ data class TurnoDTO(
     val encordador: String
 )
 
+/**
+ * Esta función de extensión de Turno se ocupa de convertir el objeto de tipos transferencia de datos (DTO) para poder
+ * pasar la información del mismo a ficheros de una forma más sencilla, evitando los tipos complejos.
+ *
+ * @return TurnoDTO, el objeto convertido en DTO.
+ */
 fun Turno.toDTO(): TurnoDTO {
     return TurnoDTO(
         id = id,

@@ -1,3 +1,7 @@
+/**
+ * @author Mireya Sánchez Pinzón
+ * @author Alejandro Sánchez Monzón
+ */
 package dto
 
 import kotlinx.serialization.SerialName
@@ -18,6 +22,12 @@ data class ProductoDTO(
     val pedido: String
 )
 
+/**
+ * Esta función de extensión de Producto se ocupa de convertir el objeto de tipos transferencia de datos (DTO) para poder
+ * pasar la información del mismo a ficheros de una forma más sencilla, evitando los tipos complejos.
+ *
+ * @return ProductoDTO, el objeto convertido en DTO.
+ */
 fun Producto.toDTO(): ProductoDTO {
     return ProductoDTO(
         id = id,

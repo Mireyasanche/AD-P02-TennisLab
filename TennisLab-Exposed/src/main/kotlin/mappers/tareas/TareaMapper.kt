@@ -1,3 +1,7 @@
+/**
+ * @author Mireya Sánchez Pinzón
+ * @author Alejandro Sánchez Monzón
+ */
 package mappers.tareas
 
 import entities.tareas.TareasEncordadoDAO
@@ -7,6 +11,13 @@ import models.tareas.NumeroNudos
 import models.tareas.TareaEncordado
 import models.tareas.TareaPersonalizacion
 
+
+/**
+ * Esta función de extensión de TareasEncordadoDAO se ocupa de convertir el objeto de acceso de datos (DAO)
+ * a su tipo original, como estructura en su modelo.
+ *
+ * @return TareaEncordado, el objeto convertido a modelo.
+ */
 fun TareasEncordadoDAO.fromTareasEncordadoDAOToTareasEncordado()
         : TareaEncordado {
     return TareaEncordado(
@@ -22,6 +33,13 @@ fun TareasEncordadoDAO.fromTareasEncordadoDAOToTareasEncordado()
     )
 }
 
+
+/**
+ * Esta función de extensión de TareasPersonalizacionDAO se ocupa de convertir el objeto de acceso de datos (DAO)
+ * a su tipo original, como estructura en su modelo.
+ *
+ * @return TareaPersonalizacion, el objeto convertido a modelo.
+ */
 fun TareasPersonalizacionDAO.fromTareasPersonalizacionDAOToTareasPersonalizacion()
         : TareaPersonalizacion {
     return TareaPersonalizacion(

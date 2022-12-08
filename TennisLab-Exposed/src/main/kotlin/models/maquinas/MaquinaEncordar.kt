@@ -1,3 +1,8 @@
+/**
+ * @author Mireya Sánchez Pinzón
+ * @author Alejandro Sánchez Monzón
+ */
+
 package models.maquinas
 
 import models.Turno
@@ -22,7 +27,15 @@ class MaquinaEncordar(
 enum class TipoEncordaje(valor: String) {
     MANUAL("MANUAL"),
     AUTOMATICA("AUTOMATICA");
-
+    /**
+     * Función que parsea los Enums del objeto MaquinaEncordado. Indicando su equivalencia al valor de tipo String.
+     *
+     * @param tipoEncordaje El enum en formato String equivalente al valor de la clase Enum.
+     *
+     * @throws IllegalArgumentException Excepción que el método lanzará si el String que trata de parsear no eixste, o el tipo no existe.
+     *
+     * @return TipoEncordaje, un enum que variará dependiendo del valor de dicha variable.
+     */
     companion object {
         fun from(tipoEncordaje: String): TipoEncordaje {
             return when (tipoEncordaje.uppercase()) {
