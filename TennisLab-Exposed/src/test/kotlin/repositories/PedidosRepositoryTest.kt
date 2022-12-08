@@ -2,9 +2,7 @@ package repositories
 
 import config.AppConfig
 import db.DataBaseManager
-import db.getUsuariosInit
 import entities.PedidosDAO
-import entities.TurnosDAO
 import entities.UsuariosDAO
 import exceptions.PedidoException
 import models.Pedido
@@ -81,29 +79,6 @@ internal class PedidosRepositoryTest {
     @BeforeEach
     fun beforeEach() {
         DataBaseManager.clearTables()
-    }
-
-    private fun saveData() = transaction {
-        val usuarioDAO = UsuariosDAO.new(pedido.encordador.id){
-            uuid = pedido.encordador.uuid
-            nombre = pedido.encordador.nombre
-            apellido = pedido.encordador.apellido
-            email = pedido.encordador.email
-            contrasena = pedido.encordador.contrasena
-            perfil = pedido.encordador.perfil
-
-        }
-
-        val pedidoDAO = PedidosDAO.new(pedido.id) {
-            uuid = pedido.uuid
-            estado = pedido.estado.toString()
-            encordador = usuarioDAO
-            fechaTope = pedido.fechaTope
-            fechaEntrada = pedido.fechaEntrada
-            fechaProgramada = pedido.fechaProgramada
-            fechaEntrega = pedido.fechaEntrega
-            precio = pedido.precio
-        }
     }
 
     @Test
