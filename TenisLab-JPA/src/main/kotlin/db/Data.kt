@@ -56,6 +56,15 @@ fun getUsuariosInit() = listOf(
         email = "ana@carlos.com",
         contrasena = "1234",
         perfil = TipoUsuario.ENCORDADOR
+    ),
+    Usuario(
+        id = 5,
+        uuid = UUID.randomUUID(),
+        nombre = "Carlos",
+        apellido = "Carlos",
+        email = "carlos@carlos.com",
+        contrasena = "1234",
+        perfil = TipoUsuario.ENCORDADOR
     )
 )
 
@@ -202,7 +211,7 @@ fun getPedidosInit() = listOf(
         id = 1,
         uuid = UUID.randomUUID(),
         estado = TipoEstado.EN_PROCESO,
-        encordador = getUsuariosInit()[2],
+        encordador = getUsuariosInit()[5],
         fechaTope = LocalDate.of(2022, 12, 27),
         fechaEntrada = LocalDate.of(2022, 12, 1),
         fechaProgramada = LocalDate.of(2022, 12, 20),

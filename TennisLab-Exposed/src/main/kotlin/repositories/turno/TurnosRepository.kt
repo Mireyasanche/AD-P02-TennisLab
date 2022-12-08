@@ -45,6 +45,7 @@ class TurnosRepository(
     }
 
     private fun insert(entity: Turno): Turno {
+
         logger.debug { "save($entity) - creando" }
         return turnosDAO.new(entity.id) {
             uuid = entity.uuid

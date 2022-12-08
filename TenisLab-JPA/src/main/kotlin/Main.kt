@@ -51,7 +51,6 @@ fun main() {
     }
 
     //Información completa en JSON de un pedido.
-
     val pedido = pedidosControllers.getPedido(2)?.toDTO()
     serviceJSON.writePedido("Informacion_completa_pedido", listOf(pedido!!))
 
