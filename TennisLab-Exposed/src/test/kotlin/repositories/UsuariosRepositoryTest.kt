@@ -1,4 +1,4 @@
-package repositories.usuario
+package repositories
 
 import config.AppConfig
 import db.DataBaseManager
@@ -6,11 +6,10 @@ import entities.UsuariosDAO
 import exceptions.UsuarioException
 import models.TipoUsuario
 import models.Usuario
-import org.jetbrains.exposed.dao.IntEntity
-import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*
+import repositories.usuario.UsuariosRepository
 import java.util.*
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -85,7 +84,7 @@ internal class UsuariosRepositoryTest {
             { assertEquals(res.nombre, usuario.nombre) },
             { assertEquals(res.apellido, usuario.apellido) },
             { assertEquals(res.email, usuario.email) },
-            { assertEquals(res.perfil,usuario.perfil) },
+            { assertEquals(res.perfil, usuario.perfil) },
         )
     }
 

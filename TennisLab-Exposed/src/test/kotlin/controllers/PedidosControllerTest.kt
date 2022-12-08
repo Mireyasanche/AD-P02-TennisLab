@@ -1,6 +1,5 @@
-package controllers.pedido
+package controllers
 
-import controllers.PedidosController
 import exceptions.PedidoException
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs

@@ -20,7 +20,6 @@ data class MaquinaPersonalizar(
     override val modelo: String,
     @Column(name = "fecha_adquision")
     @Type(type = "org.hibernate.type.LocalDateType")
-    @CreationTimestamp
     override val fechaAdquisicion: LocalDate,
     override val numeroSerie: Int,
     @OneToOne(cascade = [CascadeType.ALL])

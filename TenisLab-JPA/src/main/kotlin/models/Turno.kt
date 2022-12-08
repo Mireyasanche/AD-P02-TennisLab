@@ -18,7 +18,10 @@ data class Turno(
     @Type(type = "uuid-char")
     val uuid: UUID,
 
+    @Type(type = "org.hibernate.type.LocalDateTimeType")
     val comienzo: LocalDateTime,
+
+    @Type(type = "org.hibernate.type.LocalDateTimeType")
     val final: LocalDateTime,
 
     @OneToOne

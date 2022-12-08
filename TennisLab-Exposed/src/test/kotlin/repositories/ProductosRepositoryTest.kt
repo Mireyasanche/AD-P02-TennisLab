@@ -1,18 +1,16 @@
-package repositories.producto
+package repositories
 
 import config.AppConfig
 import db.DataBaseManager
-import db.getPedidosInit
 import entities.PedidosDAO
 import entities.ProductosDAO
-import entities.UsuariosDAO
 import exceptions.ProductoException
-import exceptions.UsuarioException
 import models.*
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.jupiter.api.*
 
 import org.junit.jupiter.api.Assertions.*
+import repositories.producto.ProductosRepository
 import java.time.LocalDate
 import java.util.*
 
@@ -111,9 +109,9 @@ internal class ProductosRepositoryTest {
             { assertEquals(res.tipoProducto, producto.tipoProducto) },
             { assertEquals(res.marca, producto.marca) },
             { assertEquals(res.modelo, producto.modelo) },
-            { assertEquals(res.precio,producto.precio) },
-            { assertEquals(res.stock,producto.stock) },
-            { assertEquals(res.pedido,producto.pedido) },
+            { assertEquals(res.precio, producto.precio) },
+            { assertEquals(res.stock, producto.stock) },
+            { assertEquals(res.pedido, producto.pedido) },
         )
     }
 

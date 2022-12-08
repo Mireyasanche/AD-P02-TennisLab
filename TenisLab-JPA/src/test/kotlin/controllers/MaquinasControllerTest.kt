@@ -1,14 +1,16 @@
-package controllers.maquinas
+package controllers
 
-import controllers.MaquinasController
 import exceptions.maquinas.MaquinaEncordarException
 import exceptions.maquinas.MaquinaPersonalizarException
+import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
 import io.mockk.verify
-import models.*
+import models.TipoUsuario
+import models.Turno
+import models.Usuario
 import models.maquinas.MaquinaEncordar
 import models.maquinas.MaquinaPersonalizar
 import models.maquinas.TipoEncordaje
@@ -25,6 +27,7 @@ import java.util.*
 internal class MaquinasControllerTest {
     @MockK
     lateinit var maquinasPersonalizarRepository: MaquinasPersonalizarRepository
+
     @MockK
     lateinit var maquinasEncordarRepository: MaquinasEncordarRepository
 
@@ -75,6 +78,10 @@ internal class MaquinasControllerTest {
         rigidez = 00.0f
     )
 
+    init {
+        MockKAnnotations.init(this)
+    }
+
     @Test
     fun getMaquinasPersonalizar() {
         every { maquinasPersonalizarRepository.findAll() } returns listOf(maquinaPersonalizar)
@@ -99,11 +106,10 @@ internal class MaquinasControllerTest {
 
     @Test
     fun getMaquinaPersonzalizarByIdNoExiste() {
-        every { maquinasPersonalizarRepository.findById(maquinaPersonalizar.id) } throws MaquinaPersonalizarException("Máquina con id ${maquinaPersonalizar.id} no existe")
+        every { maquinasPersonalizarRepository.findById(maquinaPersonalizar.id) } returns null
 
-        val res = assertThrows<MaquinaPersonalizarException> { maquinasController.getMaquinaPersonalizar(maquinaPersonalizar.id) }
-
-        assert(res.message == "Máquina con id ${maquinaPersonalizar.id} no existe")
+        val res = maquinasController.getMaquinaPersonalizar(maquinaPersonalizar.id)
+        assert(res == null)
 
         verify(exactly = 1) { maquinasPersonalizarRepository.findById(maquinaPersonalizar.id) }
     }
@@ -133,11 +139,10 @@ internal class MaquinasControllerTest {
 
     @Test
     fun deleteMaquinaPersonalizarNoExiste() {
-        every { maquinasPersonalizarRepository.delete(maquinaPersonalizar) } throws MaquinaPersonalizarException("Máquina con id ${maquinaPersonalizar.id} no existe")
+        every { maquinasPersonalizarRepository.delete(maquinaPersonalizar) } returns false
 
-        val res = assertThrows<MaquinaPersonalizarException> { maquinasController.deleteMaquinaPersonalizar(maquinaPersonalizar) }
-
-        assert(res.message == "Máquina con id ${maquinaPersonalizar.id} no existe")
+        val res = maquinasController.deleteMaquinaPersonalizar(maquinaPersonalizar)
+        assert(!res)
 
         verify(exactly = 1) { maquinasPersonalizarRepository.delete(maquinaPersonalizar) }
     }
@@ -166,11 +171,10 @@ internal class MaquinasControllerTest {
 
     @Test
     fun getByIdNoExiste() {
-        every { maquinasEncordarRepository.findById(maquinaEncordar.id) } throws MaquinaEncordarException("Máquina con id ${maquinaEncordar.id} no existe")
+        every { maquinasEncordarRepository.findById(maquinaEncordar.id) } returns null
 
-        val res = assertThrows<MaquinaEncordarException> { maquinasController.getMaquinaEncordar(maquinaEncordar.id) }
-
-        assert(res.message == "Máquina con id ${maquinaEncordar.id} no existe")
+        val res = maquinasController.getMaquinaEncordar(maquinaEncordar.id)
+        assert(res == null)
 
         verify(exactly = 1) { maquinasEncordarRepository.findById(maquinaEncordar.id) }
     }
@@ -200,11 +204,10 @@ internal class MaquinasControllerTest {
 
     @Test
     fun deleteNoExiste() {
-        every { maquinasEncordarRepository.delete(maquinaEncordar) } throws MaquinaEncordarException("Máquina con id ${maquinaEncordar.id} no existe")
+        every { maquinasEncordarRepository.delete(maquinaEncordar) } returns false
 
-        val res = assertThrows<MaquinaEncordarException> { maquinasController.deleteMaquinaEncordar(maquinaEncordar) }
-
-        assert(res.message == "Máquina con id ${maquinaEncordar.id} no existe")
+        val res = maquinasController.deleteMaquinaEncordar(maquinaEncordar)
+        assert(!res)
 
         verify(exactly = 1) { maquinasEncordarRepository.delete(maquinaEncordar) }
     }
