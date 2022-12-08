@@ -3,8 +3,6 @@ package repositories
 import db.HibernateManager
 import models.TipoUsuario
 import models.Usuario
-import org.hibernate.boot.model.relational.Database
-import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*
 import repositories.usuario.UsuariosRepository
@@ -16,16 +14,16 @@ internal class UsuariosRepositoryTest {
     private val usuariosRepository = UsuariosRepository()
 
     private val usuario = Usuario(
-        id = -1,
+        id = 7,
         uuid = UUID.randomUUID(),
         nombre = "Test",
         apellido = "Test",
         email = "Test@Test.com",
         contrasena = "Test",
-        perfil = TipoUsuario.TENISTA
+        perfil = TipoUsuario.ENCORDADOR
     )
 
-    @AfterAll
+    @AfterEach
     fun tearDown() {
         HibernateManager.transaction {
             val query = HibernateManager.manager.createNativeQuery("DELETE FROM USUARIO")
@@ -77,7 +75,7 @@ internal class UsuariosRepositoryTest {
             { assertEquals(res.nombre, usuario.nombre) },
             { assertEquals(res.apellido, usuario.apellido) },
             { assertEquals(res.email, usuario.email) },
-            { assertEquals(res.perfil,usuario.perfil) },
+            { assertEquals(res.perfil, usuario.perfil) },
         )
     }
 

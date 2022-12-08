@@ -1,7 +1,6 @@
 package repositories
 
 import db.HibernateManager
-import exceptions.TurnoException
 import models.TipoUsuario
 import models.Turno
 import models.Usuario
@@ -17,24 +16,24 @@ internal class TurnosRepositoryTest {
     private val usuariosRepository: UsuariosRepository = UsuariosRepository()
 
     private val usuario = Usuario(
-        id = -1,
+        id = 6,
         uuid = UUID.randomUUID(),
         nombre = "Test",
         apellido = "Test",
         email = "Test@Test.com",
         contrasena = "Test",
-        perfil = TipoUsuario.TENISTA
+        perfil = TipoUsuario.ENCORDADOR
     )
 
     private val turno = Turno(
-        id = 0,
+        id = 6,
         uuid = UUID.randomUUID(),
         comienzo = LocalDateTime.of(2022, 12, 15, 20, 30),
         final = LocalDateTime.of(2022, 12, 31, 9, 15),
         encordador = usuario
     )
 
-    @AfterAll
+    @AfterEach
     fun tearDown() {
         HibernateManager.transaction {
             val query = HibernateManager.manager.createNativeQuery("DELETE FROM TURNOS")

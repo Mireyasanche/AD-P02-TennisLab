@@ -1,14 +1,12 @@
 package repositories.tareas
 
 import db.HibernateManager
-
 import models.Pedido
 import models.TipoEstado
 import models.TipoUsuario
 import models.Usuario
 import models.tareas.NumeroNudos
 import models.tareas.TareaEncordado
-import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.jupiter.api.*
 import repositories.pedido.PedidosRepository
 import repositories.usuario.UsuariosRepository
@@ -22,17 +20,17 @@ internal class TareasEncordarRepositoryTest {
     private val pedidosRepository = PedidosRepository()
 
     private val usuario = Usuario(
-        id = -1,
+        id = 2,
         uuid = UUID.randomUUID(),
         nombre = "Test",
         apellido = "Test",
         email = "Test@Test.com",
         contrasena = "Test",
-        perfil = TipoUsuario.TENISTA
+        perfil = TipoUsuario.ENCORDADOR
     )
 
     private val pedido = Pedido(
-        id = -1,
+        id = 2,
         uuid = UUID.randomUUID(),
         estado = TipoEstado.EN_PROCESO,
         encordador = usuario,
@@ -44,18 +42,18 @@ internal class TareasEncordarRepositoryTest {
     )
 
     private val tarea = TareaEncordado(
-        id = -1,
+        id = 2,
         uuid = UUID.randomUUID(),
         precio = 0.0f,
         pedido = pedido,
         tensionHorizontal = 0.0f,
         cordajeHorizontal = "Test",
-        tensionVertical =  0.0f,
+        tensionVertical = 0.0f,
         cordajeVertical = "Test",
         nudos = NumeroNudos.CUATRO
     )
 
-    @AfterAll
+    @AfterEach
     fun tearDown() {
         HibernateManager.transaction {
             val query = HibernateManager.manager.createNativeQuery("DELETE FROM TAREAS_ENCORDADO")
@@ -112,9 +110,9 @@ internal class TareasEncordarRepositoryTest {
             { Assertions.assertEquals(res.precio, tarea.precio) },
             { Assertions.assertEquals(res.tensionHorizontal, tarea.tensionHorizontal) },
             { Assertions.assertEquals(res.tensionVertical, tarea.tensionVertical) },
-            { Assertions.assertEquals(res.cordajeVertical,tarea.cordajeVertical) },
+            { Assertions.assertEquals(res.cordajeVertical, tarea.cordajeVertical) },
             { Assertions.assertEquals(res.cordajeHorizontal, tarea.cordajeHorizontal) },
-            { Assertions.assertEquals(res.nudos,tarea.nudos) },
+            { Assertions.assertEquals(res.nudos, tarea.nudos) },
         )
     }
 
