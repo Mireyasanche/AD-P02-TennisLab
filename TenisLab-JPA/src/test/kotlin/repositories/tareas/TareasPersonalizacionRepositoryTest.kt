@@ -20,7 +20,7 @@ internal class TareasPersonalizacionRepositoryTest {
     private val pedidosRepository = PedidosRepository()
 
     private val usuario = Usuario(
-        id = 4,
+        id = 3,
         uuid = UUID.randomUUID(),
         nombre = "Test",
         apellido = "Test",
@@ -30,7 +30,7 @@ internal class TareasPersonalizacionRepositoryTest {
     )
 
     private val pedido = Pedido(
-        id = -1,
+        id = 3,
         uuid = UUID.randomUUID(),
         estado = TipoEstado.EN_PROCESO,
         encordador = usuario,
@@ -42,7 +42,7 @@ internal class TareasPersonalizacionRepositoryTest {
     )
 
     private val tarea = TareaPersonalizacion(
-        id = -1,
+        id = 3,
         uuid = UUID.randomUUID(),
         precio = 0.0f,
         pedido = pedido,
@@ -51,7 +51,7 @@ internal class TareasPersonalizacionRepositoryTest {
         rigidez = 0.0f
     )
 
-    @AfterAll
+    @AfterEach
     fun tearDown() {
         HibernateManager.transaction {
             val query = HibernateManager.manager.createNativeQuery("DELETE FROM TAREAS_PERSONALIZACION")
@@ -108,7 +108,7 @@ internal class TareasPersonalizacionRepositoryTest {
             { Assertions.assertEquals(res.precio, tarea.precio) },
             { Assertions.assertEquals(res.balance, tarea.balance) },
             { Assertions.assertEquals(res.rigidez, tarea.rigidez) },
-            { Assertions.assertEquals(res.peso,tarea.peso) }
+            { Assertions.assertEquals(res.peso, tarea.peso) }
         )
     }
 

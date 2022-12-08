@@ -1,14 +1,12 @@
 package repositories.maquinas
 
 import db.HibernateManager
-import models.TipoUsuario
+import db.getUsuariosInit
 import models.Turno
-import models.Usuario
 import models.maquinas.MaquinaEncordar
 import models.maquinas.TipoEncordaje
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.assertAll
-import repositories.maquinas.MaquinasEncordarRepository
 import repositories.turno.TurnosRepository
 import repositories.usuario.UsuariosRepository
 import java.time.LocalDate
@@ -21,22 +19,12 @@ internal class MaquinasEncordarRepositoryTest {
     private val turnosRepository: TurnosRepository = TurnosRepository()
     private val usuariosRepository: UsuariosRepository = UsuariosRepository()
 
-    private val usuario = Usuario(
-        id = 7,
-        uuid = UUID.randomUUID(),
-        nombre = "Test",
-        apellido = "Test",
-        email = "Test",
-        contrasena = "Test",
-        perfil = TipoUsuario.ENCORDADOR
-    )
-
     private val turno = Turno(
         id = 0,
         uuid = UUID.randomUUID(),
         comienzo = LocalDateTime.of(2022, 12, 15, 20, 30),
         final = LocalDateTime.of(2022, 12, 31, 9, 15),
-        encordador = usuario
+        encordador = getUsuariosInit()[2]
     )
 
     private val maquina = MaquinaEncordar(
@@ -52,7 +40,7 @@ internal class MaquinasEncordarRepositoryTest {
         tensionMinima = 00.0f
     )
 
-    @AfterAll
+    @AfterEach
     fun tearDown() {
         HibernateManager.transaction {
             val query = HibernateManager.manager.createNativeQuery("DELETE FROM MAQUINAS_ENCORDAR")
@@ -72,7 +60,7 @@ internal class MaquinasEncordarRepositoryTest {
 
     @BeforeAll
     fun setUp() {
-        usuariosRepository.save(usuario)
+        usuariosRepository.save(getUsuariosInit()[2])
         turnosRepository.save(turno)
     }
 
@@ -89,7 +77,7 @@ internal class MaquinasEncordarRepositoryTest {
 
         val res = maquinasEncordarRepository.findById(maquina.id)
 
-        assert(res == maquina)
+        assert(res?.id == maquina.id)
     }
 
     @Test

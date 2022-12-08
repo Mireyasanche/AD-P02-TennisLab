@@ -1,9 +1,8 @@
 package repositories.maquinas
 
 import db.HibernateManager
-import models.TipoUsuario
+import db.getUsuariosInit
 import models.Turno
-import models.Usuario
 import models.maquinas.MaquinaPersonalizar
 import org.junit.jupiter.api.*
 import repositories.turno.TurnosRepository
@@ -18,26 +17,16 @@ internal class MaquinasPersonalizarRepositoryTest {
     private val turnosRepository: TurnosRepository = TurnosRepository()
     private val usuariosRepository: UsuariosRepository = UsuariosRepository()
 
-    private val usuario = Usuario(
-        id = 6,
-        uuid = UUID.randomUUID(),
-        nombre = "Test",
-        apellido = "Test",
-        email = "Test",
-        contrasena = "Test",
-        perfil = TipoUsuario.ENCORDADOR
-    )
-
     private val turno = Turno(
-        id = 0,
+        id = 1,
         uuid = UUID.randomUUID(),
         comienzo = LocalDateTime.of(2022, 12, 15, 20, 30),
         final = LocalDateTime.of(2022, 12, 31, 9, 15),
-        encordador = usuario
+        encordador = getUsuariosInit()[4]
     )
 
     private val maquina = MaquinaPersonalizar(
-        id = 0,
+        id = 1,
         uuid = UUID.randomUUID(),
         marca = "Test",
         modelo = "Test",
@@ -49,7 +38,7 @@ internal class MaquinasPersonalizarRepositoryTest {
         rigidez = 00.0f
     )
 
-    @AfterAll
+    @AfterEach
     fun tearDown() {
         HibernateManager.transaction {
             val query = HibernateManager.manager.createNativeQuery("DELETE FROM MAQUINA_PERSONALIZAR")
@@ -69,7 +58,7 @@ internal class MaquinasPersonalizarRepositoryTest {
 
     @BeforeAll
     fun setUp() {
-        usuariosRepository.save(usuario)
+        usuariosRepository.save(getUsuariosInit()[4])
         turnosRepository.save(turno)
     }
 
@@ -88,7 +77,7 @@ internal class MaquinasPersonalizarRepositoryTest {
         println(res)
         println(maquina)
 
-        assert(res == maquina)
+        assert(res?.id == maquina.id)
     }
 
     @Test

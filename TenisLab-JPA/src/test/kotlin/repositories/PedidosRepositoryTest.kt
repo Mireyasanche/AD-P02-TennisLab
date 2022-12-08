@@ -17,7 +17,7 @@ internal class PedidosRepositoryTest {
     private val usuariosRepository: UsuariosRepository = UsuariosRepository()
 
     private val usuario = Usuario(
-        id = 3,
+        id = 4,
         uuid = UUID.randomUUID(),
         nombre = "Test",
         apellido = "Test",
@@ -27,7 +27,7 @@ internal class PedidosRepositoryTest {
     )
 
     private val pedido = Pedido(
-        id = 0,
+        id = 4,
         uuid = UUID.randomUUID(),
         estado = TipoEstado.TERMINADO,
         encordador = usuario,
@@ -38,7 +38,7 @@ internal class PedidosRepositoryTest {
         precio = 10.0f
     )
 
-    @AfterAll
+    @AfterEach
     fun tearDown() {
         HibernateManager.transaction {
             val query = HibernateManager.manager.createNativeQuery("DELETE FROM TURNOS")
