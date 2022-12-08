@@ -17,13 +17,13 @@ internal class PedidosRepositoryTest {
     private val usuariosRepository: UsuariosRepository = UsuariosRepository()
 
     private val usuario = Usuario(
-        id = -1,
+        id = 3,
         uuid = UUID.randomUUID(),
         nombre = "Test",
         apellido = "Test",
         email = "Test@Test.com",
         contrasena = "Test",
-        perfil = TipoUsuario.TENISTA
+        perfil = TipoUsuario.ENCORDADOR
     )
 
     private val pedido = Pedido(

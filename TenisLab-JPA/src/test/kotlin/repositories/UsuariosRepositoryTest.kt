@@ -16,13 +16,13 @@ internal class UsuariosRepositoryTest {
     private val usuariosRepository = UsuariosRepository()
 
     private val usuario = Usuario(
-        id = -1,
+        id = 2,
         uuid = UUID.randomUUID(),
         nombre = "Test",
         apellido = "Test",
         email = "Test@Test.com",
         contrasena = "Test",
-        perfil = TipoUsuario.TENISTA
+        perfil = TipoUsuario.ENCORDADOR
     )
 
     @AfterAll

@@ -17,13 +17,13 @@ internal class TurnosRepositoryTest {
     private val usuariosRepository: UsuariosRepository = UsuariosRepository()
 
     private val usuario = Usuario(
-        id = -1,
+        id = 0,
         uuid = UUID.randomUUID(),
         nombre = "Test",
         apellido = "Test",
         email = "Test@Test.com",
         contrasena = "Test",
-        perfil = TipoUsuario.TENISTA
+        perfil = TipoUsuario.ENCORDADOR
     )
 
     private val turno = Turno(

@@ -22,13 +22,13 @@ internal class MaquinasEncordarRepositoryTest {
     private val usuariosRepository: UsuariosRepository = UsuariosRepository()
 
     private val usuario = Usuario(
-        id = 0,
+        id = 7,
         uuid = UUID.randomUUID(),
         nombre = "Test",
         apellido = "Test",
         email = "Test",
         contrasena = "Test",
-        perfil = TipoUsuario.TENISTA
+        perfil = TipoUsuario.ENCORDADOR
     )
 
     private val turno = Turno(
