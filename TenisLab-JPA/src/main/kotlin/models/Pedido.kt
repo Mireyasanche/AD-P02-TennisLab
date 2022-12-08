@@ -25,22 +25,18 @@ data class Pedido(
 
     @Column(name = "fecha_tope")
     @Type(type = "org.hibernate.type.LocalDateType")
-    @CreationTimestamp
     val fechaTope: LocalDate,
 
     @Column(name = "fecha_entrada")
     @Type(type = "org.hibernate.type.LocalDateType")
-    @CreationTimestamp
     val fechaEntrada: LocalDate,
 
     @Column(name = "fecha_programada")
     @Type(type = "org.hibernate.type.LocalDateType")
-    @CreationTimestamp
     val fechaProgramada: LocalDate,
 
     @Column(name = "fecha_entrega")
     @Type(type = "org.hibernate.type.LocalDateType")
-    @CreationTimestamp
     val fechaEntrega: LocalDate,
 
     val precio: Float

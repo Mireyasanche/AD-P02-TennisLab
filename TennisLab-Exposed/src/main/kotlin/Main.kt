@@ -28,7 +28,7 @@ fun main() {
     }
 
     getProductosInit().forEach { producto ->
-        productosController.saveProductos(producto)
+        productosController.saveProducto(producto)
     }
 
     getTareasEncordadoInit().forEach { tarea ->

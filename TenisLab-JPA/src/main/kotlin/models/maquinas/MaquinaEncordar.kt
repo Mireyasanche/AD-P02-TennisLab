@@ -18,6 +18,8 @@ data class MaquinaEncordar(
     override val uuid: UUID,
     override val marca: String,
     override val modelo: String,
+    @Column(name = "fecha_adquision")
+    @Type(type = "org.hibernate.type.LocalDateType")
     override val fechaAdquisicion: LocalDate,
     override val numeroSerie: Int,
 

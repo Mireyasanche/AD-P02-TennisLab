@@ -1,4 +1,4 @@
-package repositories.pedido
+package repositories
 
 import config.AppConfig
 import db.DataBaseManager
@@ -9,6 +9,7 @@ import exceptions.PedidoException
 import models.Pedido
 import models.TipoEstado
 import org.junit.jupiter.api.*
+import repositories.pedido.PedidosRepository
 import repositories.usuario.UsuariosRepository
 import java.time.LocalDate
 import java.util.*

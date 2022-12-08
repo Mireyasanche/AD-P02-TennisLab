@@ -1,4 +1,4 @@
-package repositories.turno
+package repositories
 
 import config.AppConfig
 import db.DataBaseManager
@@ -8,6 +8,7 @@ import entities.UsuariosDAO
 import exceptions.TurnoException
 import models.Turno
 import org.junit.jupiter.api.*
+import repositories.turno.TurnosRepository
 import repositories.usuario.UsuariosRepository
 import java.time.LocalDateTime
 import java.util.*

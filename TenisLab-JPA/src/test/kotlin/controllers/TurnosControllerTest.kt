@@ -1,9 +1,7 @@
-package controllers.turno
+package controllers
 
-import com.google.common.base.Verify.verify
-import controllers.TurnosController
 import db.getUsuariosInit
-import exceptions.TurnoException
+import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
@@ -11,7 +9,6 @@ import io.mockk.junit5.MockKExtension
 import io.mockk.verify
 import models.Turno
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith
 import repositories.turno.TurnosRepository
 import java.time.LocalDateTime
@@ -32,6 +29,10 @@ internal class TurnosControllerTest {
         final = LocalDateTime.of(2022, 12, 31, 9, 15),
         encordador = getUsuariosInit()[2]
     )
+
+    init {
+        MockKAnnotations.init(this)
+    }
 
     @Test
     fun getTurnos() {
@@ -57,11 +58,10 @@ internal class TurnosControllerTest {
 
     @Test
     fun getByIdNoExiste() {
-        every { turnosRepository.findById(turno.id) } throws TurnoException("Turno con id ${turno.id} no existe")
+        every { turnosRepository.findById(turno.id) } returns null
 
-        val res = assertThrows<TurnoException> { turnosController.getTurnoById(turno.id) }
-
-        assert(res.message == "Turno con id ${turno.id} no existe")
+        val res = turnosController.getTurnoById(turno.id)
+        assert(res == null)
 
         verify(exactly = 1) { turnosRepository.findById(turno.id) }
     }
@@ -91,11 +91,10 @@ internal class TurnosControllerTest {
 
     @Test
     fun deleteNoExiste() {
-        every { turnosRepository.delete(turno) } throws TurnoException("Turno con id ${turno.id} no existe")
+        every { turnosRepository.delete(turno) } returns false
 
-        val res = assertThrows<TurnoException> { turnosController.deleteTurno(turno) }
-
-        assert(res.message == "Turno con id ${turno.id} no existe")
+        val res = turnosController.deleteTurno(turno)
+        assert(!res)
 
         verify(exactly = 1) { turnosRepository.delete(turno) }
     }

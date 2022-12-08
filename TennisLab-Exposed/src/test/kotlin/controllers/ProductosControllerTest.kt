@@ -1,7 +1,6 @@
 package controllers
 
 import exceptions.ProductoException
-import exceptions.UsuarioException
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
@@ -9,13 +8,11 @@ import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
 import io.mockk.verify
 import models.*
-import org.junit.jupiter.api.Test
-
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith
 import repositories.producto.ProductosRepository
-import repositories.usuario.UsuariosRepository
 import java.time.LocalDate
 import java.util.*
 
@@ -124,7 +121,7 @@ internal class ProductosControllerTest {
 
     @Test
     fun deleteNoExiste() {
-        every { productosRepository.delete(producto) } throws UsuarioException("Producto no encontrado con id: ${producto.id}")
+        every { productosRepository.delete(producto) } throws ProductoException("Producto no encontrado con id: ${producto.id}")
 
         val res = assertThrows<ProductoException> {
             productosController.deleteProducto(producto)
