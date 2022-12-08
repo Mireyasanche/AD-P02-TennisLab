@@ -8,7 +8,6 @@ import entities.PedidosDAO
 import entities.TurnosDAO
 import entities.UsuariosDAO
 import entities.tareas.TareasEncordadoDAO
-import exceptions.tareas.TareaEncordadoException
 import models.Pedido
 import models.TipoEstado
 import models.TipoUsuario

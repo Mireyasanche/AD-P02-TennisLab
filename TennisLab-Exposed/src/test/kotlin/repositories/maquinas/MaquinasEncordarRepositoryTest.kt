@@ -59,6 +59,36 @@ internal class MaquinasEncordarRepositoryTest {
         tensionMinima = 00.0f
     )
 
+    private fun saveData() = transaction {
+        val usuarioDAO = UsuariosDAO.new(turno.encordador.id) {
+            uuid = turno.encordador.uuid
+            nombre = turno.encordador.nombre
+            apellido = turno.encordador.apellido
+            email = turno.encordador.email
+            contrasena = turno.encordador.contrasena
+            perfil = turno.encordador.perfil
+        }
+
+        val turnoDAO = TurnosDAO.new(turno.id) {
+            uuid = turno.uuid
+            comienzo = turno.comienzo
+            final = turno.final
+            encordador = usuarioDAO
+        }
+
+        MaquinasEncordarDAO.new(maquina.id) {
+            uuid = maquina.uuid
+            marca = maquina.marca
+            modelo = maquina.modelo
+            fechaAdquisicion = maquina.fechaAdquisicion
+            numeroSerie = maquina.numeroSerie
+            turno = turnoDAO
+            tipo = maquina.tipo.toString()
+            tensionMaxima = maquina.tensionMaxima
+            tensionMinima = maquina.tensionMinima
+        }
+    }
+
     @BeforeAll
     fun setUp() {
         DataBaseManager.init(AppConfig.DEFAULT)
@@ -83,19 +113,10 @@ internal class MaquinasEncordarRepositoryTest {
 
     @Test
     fun findById() = transaction {
-        MaquinasEncordarDAO.new(maquina.id) {
-            uuid = maquina.uuid
-            marca = maquina.marca
-            modelo = maquina.modelo
-            fechaAdquisicion = maquina.fechaAdquisicion
-            numeroSerie = maquina.numeroSerie
-            tipo = maquina.tipo.toString()
-            tensionMaxima = maquina.tensionMaxima
-            tensionMinima = maquina.tensionMinima
-        }
+        saveData()
 
-       val res = maquinasEncordarRepository.findById(maquina.id)
-        assert(res == maquina)
+        val res = maquinasEncordarRepository.findById(maquina.id)
+        assert(res.id == maquina.id)
     }
 
     @Test
@@ -110,42 +131,26 @@ internal class MaquinasEncordarRepositoryTest {
         usuariosRepository.save(usuario)
         turnosRepository.save(turno)
 
-        val res = maquinasEncordarRepository.save(maquina)
+        maquinasEncordarRepository.save(maquina)
 
         assertTrue(maquinasEncordarRepository.findAll().size == 1)
     }
+
     @Test
     fun saveUpdate() = transaction {
-        MaquinasEncordarDAO.new(maquina.id) {
-            uuid = maquina.uuid
-            marca = maquina.marca
-            modelo = maquina.modelo
-            fechaAdquisicion = maquina.fechaAdquisicion
-            numeroSerie = maquina.numeroSerie
-            tipo = maquina.tipo.toString()
-            tensionMaxima = maquina.tensionMaxima
-            tensionMinima = maquina.tensionMinima
-        }
+        saveData()
 
         val res = maquinasEncordarRepository.findById(maquina.id)
-        assert(res == maquina)
+        assert(res.id == maquina.id)
     }
 
     @Test
     fun delete() = transaction {
-        MaquinasEncordarDAO.new(maquina.id) {
-           uuid = maquina.uuid
-            marca = maquina.marca
-            modelo = maquina.modelo
-            fechaAdquisicion = maquina.fechaAdquisicion
-            numeroSerie = maquina.numeroSerie
-            tipo = maquina.tipo.toString()
-            tensionMaxima = maquina.tensionMaxima
-            tensionMinima = maquina.tensionMinima
-        }
+        saveData()
 
-        val res = maquinasEncordarRepository.delete(maquina)
-        assert(res)
+        maquinasEncordarRepository.delete(maquina)
+        val list = maquinasEncordarRepository.findAll().size
+        assert(list == 0)
     }
 
     @Test

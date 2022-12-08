@@ -45,6 +45,29 @@ internal class PedidosRepositoryTest {
         precio = 10.0f
     )
 
+    private fun saveData() = transaction {
+        val usuarioDAO = UsuariosDAO.new(pedido.encordador.id) {
+            uuid = pedido.encordador.uuid
+            nombre = pedido.encordador.nombre
+            apellido = pedido.encordador.apellido
+            email = pedido.encordador.email
+            contrasena = pedido.encordador.contrasena
+            perfil = pedido.encordador.perfil
+
+        }
+
+        PedidosDAO.new(pedido.id) {
+            uuid = pedido.uuid
+            estado = pedido.estado.toString()
+            encordador = usuarioDAO
+            fechaTope = pedido.fechaTope
+            fechaEntrada = pedido.fechaEntrada
+            fechaProgramada = pedido.fechaProgramada
+            fechaEntrega = pedido.fechaEntrega
+            precio = pedido.precio
+        }
+    }
+
     @BeforeAll
     fun setUp() {
         DataBaseManager.init(AppConfig.DEFAULT)
