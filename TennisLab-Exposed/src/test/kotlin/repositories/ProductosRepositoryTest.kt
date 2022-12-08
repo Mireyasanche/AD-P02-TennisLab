@@ -4,13 +4,15 @@ import config.AppConfig
 import db.DataBaseManager
 import entities.PedidosDAO
 import entities.ProductosDAO
+import entities.UsuariosDAO
 import exceptions.ProductoException
 import models.*
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.jupiter.api.*
-
 import org.junit.jupiter.api.Assertions.*
+import repositories.pedido.PedidosRepository
 import repositories.producto.ProductosRepository
+import repositories.usuario.UsuariosRepository
 import java.time.LocalDate
 import java.util.*
 
@@ -18,6 +20,8 @@ import java.util.*
 internal class ProductosRepositoryTest {
 
     private val productosRepository = ProductosRepository(ProductosDAO, PedidosDAO)
+    private val pedidosRepository = PedidosRepository(PedidosDAO, UsuariosDAO)
+    private val usuariosRepository = UsuariosRepository(UsuariosDAO)
 
     private val usuario = Usuario(
         id = -1,
@@ -52,19 +56,47 @@ internal class ProductosRepositoryTest {
         pedido = pedido
     )
 
-    @BeforeAll
-    fun setUp() {
-        DataBaseManager.init(AppConfig.DEFAULT)
-    }
-
-    @AfterAll
+    @AfterEach
     fun tearDown() {
         DataBaseManager.dropTables()
     }
 
     @BeforeEach
     fun beforeEach() {
+        DataBaseManager.init(AppConfig.DEFAULT)
         DataBaseManager.clearTables()
+    }
+
+    private fun saveData() = transaction {
+        val usuarioDAO = UsuariosDAO.new(pedido.encordador.id) {
+            uuid = pedido.encordador.uuid
+            nombre = pedido.encordador.nombre
+            apellido = pedido.encordador.apellido
+            email = pedido.encordador.email
+            contrasena = pedido.encordador.contrasena
+            perfil = pedido.encordador.perfil
+        }
+
+        val pedidoDAO = PedidosDAO.new(pedido.id) {
+            uuid = pedido.uuid
+            estado = pedido.estado.toString()
+            encordador = usuarioDAO
+            fechaTope = pedido.fechaTope
+            fechaEntrada = pedido.fechaEntrada
+            fechaProgramada = pedido.fechaProgramada
+            fechaEntrega = pedido.fechaEntrega
+            precio = pedido.precio
+        }
+
+        ProductosDAO.new(producto.id) {
+            uuid = producto.uuid
+            tipoProducto = producto.tipoProducto
+            marca = producto.marca
+            modelo = producto.modelo
+            precio = producto.precio
+            stock = producto.stock
+            pedido = pedidoDAO
+        }
     }
 
     @Test
@@ -76,15 +108,7 @@ internal class ProductosRepositoryTest {
 
     @Test
     fun findById() = transaction {
-        ProductosDAO.new(producto.id) {
-            uuid = producto.uuid
-            tipoProducto = producto.tipoProducto
-            marca = producto.marca
-            modelo = producto.modelo
-            precio = producto.precio
-            stock = producto.stock
-            pedido = producto.pedido as PedidosDAO
-        }
+        saveData()
 
         val res = productosRepository.findById(producto.id)
 
@@ -101,6 +125,8 @@ internal class ProductosRepositoryTest {
 
     @Test
     fun saveInsert() {
+        usuariosRepository.save(usuario)
+        pedidosRepository.save(pedido)
         val res = productosRepository.save(producto)
 
         assertAll(
@@ -110,22 +136,13 @@ internal class ProductosRepositoryTest {
             { assertEquals(res.marca, producto.marca) },
             { assertEquals(res.modelo, producto.modelo) },
             { assertEquals(res.precio, producto.precio) },
-            { assertEquals(res.stock, producto.stock) },
-            { assertEquals(res.pedido, producto.pedido) },
+            { assertEquals(res.stock, producto.stock) }
         )
     }
 
     @Test
     fun saveUpdate() = transaction {
-        ProductosDAO.new(producto.id) {
-            uuid = producto.uuid
-            tipoProducto = producto.tipoProducto
-            marca = producto.marca
-            modelo = producto.modelo
-            precio = producto.precio
-            stock = producto.stock
-            pedido = producto.pedido as PedidosDAO
-        }
+        saveData()
 
         val res = productosRepository.save(producto)
 
@@ -134,15 +151,7 @@ internal class ProductosRepositoryTest {
 
     @Test
     fun delete() = transaction {
-        ProductosDAO.new(producto.id) {
-            uuid = producto.uuid
-            tipoProducto = producto.tipoProducto
-            marca = producto.marca
-            modelo = producto.modelo
-            precio = producto.precio
-            stock = producto.stock
-            pedido = producto.pedido as PedidosDAO
-        }
+        saveData()
 
         val res = productosRepository.delete(producto)
 

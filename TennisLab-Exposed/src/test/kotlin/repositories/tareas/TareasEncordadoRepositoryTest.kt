@@ -3,70 +3,105 @@ package repositories.tareas
 import config.AppConfig
 import db.DataBaseManager
 import entities.PedidosDAO
+import entities.UsuariosDAO
 import entities.tareas.TareasEncordadoDAO
-import exceptions.tareas.TareaEncordadoException
 import models.Pedido
 import models.TipoEstado
 import models.TipoUsuario
 import models.Usuario
 import models.tareas.NumeroNudos
 import models.tareas.TareaEncordado
+import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*
+import repositories.pedido.PedidosRepository
+import repositories.usuario.UsuariosRepository
 import java.time.LocalDate
 import java.util.*
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 internal class TareasEncordadoRepositoryTest {
+    private val usuariosRepository = UsuariosRepository(UsuariosDAO)
+    private val pedidosRepository = PedidosRepository(PedidosDAO, UsuariosDAO)
     private val tareasEncordadoRepository = TareasEncordadoRepository(TareasEncordadoDAO, PedidosDAO)
 
     private val usuario = Usuario(
-        id = -1,
+        id = 2,
         uuid = UUID.randomUUID(),
-        nombre = "Test",
-        apellido = "Test",
-        email = "Test@Test.com",
-        contrasena = "Test",
-        perfil = TipoUsuario.TENISTA
+        nombre = "María",
+        apellido = "Sanz",
+        email = "maria@sanz.com",
+        contrasena = "1234",
+        perfil = TipoUsuario.ENCORDADOR
     )
 
     private val pedido = Pedido(
-        id = -1,
+        id = 2,
         uuid = UUID.randomUUID(),
-        estado = TipoEstado.EN_PROCESO,
+        estado = TipoEstado.RECIBIDO,
         encordador = usuario,
-        fechaTope = LocalDate.of(2000, 1, 1),
-        fechaEntrada = LocalDate.of(2000, 1, 1),
-        fechaProgramada = LocalDate.of(2000, 1, 1),
-        fechaEntrega = LocalDate.of(2000, 1, 1),
-        precio = 0.0f
+        fechaTope = LocalDate.of(2023, 1, 5),
+        fechaEntrada = LocalDate.of(2022, 12, 7),
+        fechaProgramada = LocalDate.of(2023, 1, 4),
+        fechaEntrega = LocalDate.of(2022, 1, 4),
+        precio = 57.0f
     )
 
     private val tarea = TareaEncordado(
-        id = -1,
+        id = 0,
         uuid = UUID.randomUUID(),
-        precio = 0.0f,
+        precio = 100.0f,
         pedido = pedido,
-        tensionHorizontal = 0.0f,
-        cordajeHorizontal = "Test",
-        tensionVertical = 0.0f,
-        cordajeVertical = "Test",
+        tensionHorizontal = 22.5f,
+        cordajeHorizontal = "Luxilon",
+        tensionVertical = 22.5f,
+        cordajeVertical = "Luxilon",
         nudos = NumeroNudos.CUATRO
     )
 
-    @BeforeAll
-    fun setUp() {
-        DataBaseManager.init(AppConfig.DEFAULT)
-    }
-
-    @AfterAll
+    @AfterEach
     fun tearDown() {
         DataBaseManager.dropTables()
     }
 
     @BeforeEach
     fun beforeEach() {
+        DataBaseManager.init(AppConfig.DEFAULT)
         DataBaseManager.clearTables()
+    }
+
+    private fun saveData() = transaction {
+        val usuarioDAO = UsuariosDAO.new(pedido.encordador.id) {
+            uuid = pedido.encordador.uuid
+            nombre = pedido.encordador.nombre
+            apellido = pedido.encordador.apellido
+            email = pedido.encordador.email
+            contrasena = pedido.encordador.contrasena
+            perfil = pedido.encordador.perfil
+
+        }
+
+        val pedidoDAO = PedidosDAO.new(pedido.id) {
+            uuid = pedido.uuid
+            estado = pedido.estado.toString()
+            encordador = usuarioDAO
+            fechaTope = pedido.fechaTope
+            fechaEntrada = pedido.fechaEntrada
+            fechaProgramada = pedido.fechaProgramada
+            fechaEntrega = pedido.fechaEntrega
+            precio = pedido.precio
+        }
+
+        val tareaDAO = TareasEncordadoDAO.new(tarea.id) {
+            uuid = tarea.uuid
+            precio = tarea.precio
+            pedido = pedidoDAO
+            tensionHorizontal = tarea.tensionHorizontal
+            tensionVertical = tarea.tensionVertical
+            cordajeVertical = tarea.cordajeVertical
+            cordajeHorizontal = tarea.cordajeHorizontal
+            nudos = tarea.nudos.toString()
+        }
     }
 
     @Test
@@ -76,27 +111,20 @@ internal class TareasEncordadoRepositoryTest {
         assert(res.isEmpty())
     }
 
-//    @Test
-//    fun findById()  = transaction {
-//        TareasEncordadoDAO.new(tarea.id) {
-//            uuid = tarea.uuid
-//            precio = tarea.precio
-//            pedido = tarea.pedido
-//            tensionHorizontal = tarea.tensionHorizontal
-//            tensionVertical = tarea.tensionVertical
-//            cordajeVertical = tarea.cordajeVertical
-//            cordajeHorizontal = tarea.cordajeHorizontal
-//            nudos = tarea.nudos.toString()
-//        }
-//
-//        val res = tareasEncordadoRepository.findById(tarea.id)
-//
-//        assert(res == tarea)
-//    }
+    @Test
+    fun findById() = transaction {
+        saveData()
+
+        val res = tareasEncordadoRepository.findById(tarea.id)
+        println(res)
+        println(tarea)
+
+        assert(res == tarea)
+    }
 
     @Test
     fun findByIdNoExiste() {
-        assertThrows<TareaEncordadoException> {
+        assertThrows<IllegalStateException> {
             val res = tareasEncordadoRepository.findById(-5)
         }
 
@@ -104,6 +132,8 @@ internal class TareasEncordadoRepositoryTest {
 
     @Test
     fun saveInsert() {
+        usuariosRepository.save(usuario)
+        pedidosRepository.save(pedido)
         val res = tareasEncordadoRepository.save(tarea)
 
         assertAll(
@@ -118,41 +148,23 @@ internal class TareasEncordadoRepositoryTest {
         )
     }
 
-//    @Test
-//    fun saveUpdate() = transaction {
-//        TareasEncordadoDAO.new(tarea.id) {
-//            uuid = tarea.uuid
-//            precio = tarea.precio
-//            pedido = tarea.pedido
-//            tensionHorizontal = tarea.tensionHorizontal
-//            tensionVertical = tarea.tensionVertical
-//            cordajeVertical = tarea.cordajeVertical
-//            cordajeHorizontal = tarea.cordajeHorizontal
-//            nudos = tarea.nudos.toString()
-//        }
-//
-//        val res = tareasEncordadoRepository.save(tarea)
-//
-//        assert(res == tarea)
-//    }
+    @Test
+    fun saveUpdate() = transaction {
+        saveData()
 
-//    @Test
-//    fun delete() = transaction {
-//        TareasEncordadoDAO.new(tarea.id) {
-//            uuid = tarea.uuid
-//            precio = tarea.precio
-//            pedido = tarea.pedido
-//            tensionHorizontal = tarea.tensionHorizontal
-//            tensionVertical = tarea.tensionVertical
-//            cordajeVertical = tarea.cordajeVertical
-//            cordajeHorizontal = tarea.cordajeHorizontal
-//            nudos = tarea.nudos.toString()
-//        }
-//
-//        val res = tareasEncordadoRepository.delete(tarea)
-//
-//        assert(res)
-//    }
+        val res = tareasEncordadoRepository.save(tarea)
+
+        assert(res == tarea)
+    }
+
+    @Test
+    fun delete() = transaction {
+        saveData()
+
+        val res = tareasEncordadoRepository.delete(tarea)
+
+        assert(res)
+    }
 
     @Test
     fun deleteNoExiste() {

@@ -11,6 +11,7 @@ import models.TipoEstado
 import models.TipoUsuario
 import models.Usuario
 import models.tareas.TareaPersonalizacion
+import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*
 import java.time.LocalDate
@@ -75,21 +76,20 @@ internal class TareasPersonalizacionRepositoryTest {
         assert(res.isEmpty())
     }
 
-//    @Test
-//    fun findById() = transaction {
-//        TareasPersonalizacionDAO.new(tarea.id) {
-//            uuid = tarea.uuid
-//            precio = tarea.precio
-//            pedido = tarea.pedido
-//            peso = tarea.peso
-//            balance = tarea.balance
-//            rigidez = tarea.rigidez
-//        }
-//
-//        val res = tareasPersonalizacionRepository.findById(tarea.id)
-//
-//        assert(res == tarea)
-//    }
+    @Test
+    fun findById() = transaction {
+        TareasPersonalizacionDAO.new(tarea.id) {
+            uuid = tarea.uuid
+            precio = tarea.precio
+            peso = tarea.peso
+            balance = tarea.balance
+            rigidez = tarea.rigidez
+        }
+
+        val res = tareasPersonalizacionRepository.findById(tarea.id)
+
+        assert(res == tarea)
+    }
 
     @Test
     fun findByIdNoExiste() {
@@ -112,37 +112,35 @@ internal class TareasPersonalizacionRepositoryTest {
         )
     }
 
-//    @Test
-//    fun saveUpdate() = transaction {
-//        TareasPersonalizacionDAO.new(tarea.id) {
-//            uuid = tarea.uuid
-//            precio = tarea.precio
-//            pedido = tarea.pedido
-//            peso = tarea.peso
-//            balance = tarea.balance
-//            rigidez = tarea.rigidez
-//        }
-//
-//        val res = tareasPersonalizacionRepository.save(tarea)
-//
-//        assert(res == tarea)
-//    }
+    @Test
+    fun saveUpdate() = transaction {
+        TareasPersonalizacionDAO.new(tarea.id) {
+            uuid = tarea.uuid
+            precio = tarea.precio
+            peso = tarea.peso
+            balance = tarea.balance
+            rigidez = tarea.rigidez
+        }
 
-//    @Test
-//    fun delete() = transaction {
-//        TareasPersonalizacionDAO.new(tarea.id) {
-//            uuid = tarea.uuid
-//            precio = tarea.precio
-//            pedido = tarea.pedido
-//            peso = tarea.peso
-//            balance = tarea.balance
-//            rigidez = tarea.rigidez
-//        }
-//
-//        val res = tareasPersonalizacionRepository.delete(tarea)
-//
-//        assert(res)
-//    }
+        val res = tareasPersonalizacionRepository.save(tarea)
+
+        assert(res == tarea)
+    }
+
+    @Test
+    fun delete() = transaction {
+        TareasPersonalizacionDAO.new(tarea.id) {
+            uuid = tarea.uuid
+            precio = tarea.precio
+            peso = tarea.peso
+            balance = tarea.balance
+            rigidez = tarea.rigidez
+        }
+
+        val res = tareasPersonalizacionRepository.delete(tarea)
+
+        assert(res)
+    }
 
     @Test
     fun deleteNoExiste() {

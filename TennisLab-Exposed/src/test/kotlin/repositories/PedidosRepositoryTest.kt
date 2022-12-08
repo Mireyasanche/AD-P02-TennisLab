@@ -8,6 +8,7 @@ import entities.UsuariosDAO
 import exceptions.PedidoException
 import models.Pedido
 import models.TipoEstado
+import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.jupiter.api.*
 import repositories.pedido.PedidosRepository
 import repositories.usuario.UsuariosRepository
@@ -31,6 +32,29 @@ internal class PedidosRepositoryTest {
         precio = 10.0f
     )
 
+    private fun saveData() = transaction {
+        val usuarioDAO = UsuariosDAO.new(pedido.encordador.id) {
+            uuid = pedido.encordador.uuid
+            nombre = pedido.encordador.nombre
+            apellido = pedido.encordador.apellido
+            email = pedido.encordador.email
+            contrasena = pedido.encordador.contrasena
+            perfil = pedido.encordador.perfil
+
+        }
+
+        PedidosDAO.new(pedido.id) {
+            uuid = pedido.uuid
+            estado = pedido.estado.toString()
+            encordador = usuarioDAO
+            fechaTope = pedido.fechaTope
+            fechaEntrada = pedido.fechaEntrada
+            fechaProgramada = pedido.fechaProgramada
+            fechaEntrega = pedido.fechaEntrega
+            precio = pedido.precio
+        }
+    }
+
     @BeforeAll
     fun setUp() {
         DataBaseManager.init(AppConfig.DEFAULT)
@@ -53,22 +77,13 @@ internal class PedidosRepositoryTest {
         assert(res.isEmpty())
     }
 
-//    @Test
-//    fun findById() = transaction {
-//        PedidosDAO.new(pedido.id) {
-//            uuid = pedido.uuid
-//            estado = pedido.estado.toString()
-//            encordador = pedido.encordador
-//            fechaTope = pedido.fechaTope
-//            fechaEntrada = pedido.fechaEntrada
-//            fechaProgramada = pedido.fechaProgramada
-//            fechaEntrega = pedido.fechaEntrega
-//            precio = precio
-//        }
-//
-//        val res = pedidosRepository.findById(pedido.id)
-//        assert(res == pedido)
-//    }
+    @Test
+    fun findById() = transaction {
+        saveData()
+
+        val res = pedidosRepository.findById(pedido.id)
+        assert(res == pedido)
+    }
 
     @Test
     fun findByIdNoExiste() {
@@ -85,39 +100,21 @@ internal class PedidosRepositoryTest {
         assert(pedidosRepository.findAll()[0] == res)
     }
 
-//    @Test
-//    fun saveUpdate() = transaction {
-//        PedidosDAO.new(pedido.id) {
-//            uuid = pedido.uuid
-//            estado = pedido.estado.toString()
-//            encordador = pedido.encordador
-//            fechaTope = pedido.fechaTope
-//            fechaEntrada = pedido.fechaEntrada
-//            fechaProgramada = pedido.fechaProgramada
-//            fechaEntrega = pedido.fechaEntrega
-//            precio = precio
-//        }
-//
-//        val res = pedidosRepository.findById(pedido.id)
-//        assert(res == pedido)
-//    }
+    @Test
+    fun saveUpdate() = transaction {
+        saveData()
 
-//    @Test
-//    fun delete() = transaction {
-//        PedidosDAO.new(pedido.id) {
-//            uuid = pedido.uuid
-//            estado = pedido.estado.toString()
-//            encordador = pedido.encordador
-//            fechaTope = pedido.fechaTope
-//            fechaEntrada = pedido.fechaEntrada
-//            fechaProgramada = pedido.fechaProgramada
-//            fechaEntrega = pedido.fechaEntrega
-//            precio = precio
-//        }
-//
-//        val res = pedidosRepository.delete(pedido)
-//        assert(res)
-//    }
+        val res = pedidosRepository.findById(pedido.id)
+        assert(res == pedido)
+    }
+
+    @Test
+    fun delete() = transaction {
+        saveData()
+
+        val res = pedidosRepository.delete(pedido)
+        assert(res)
+    }
 
     @Test
     fun deleteNoExiste() {
