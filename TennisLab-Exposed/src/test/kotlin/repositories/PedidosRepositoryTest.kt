@@ -4,10 +4,13 @@ import config.AppConfig
 import db.DataBaseManager
 import db.getUsuariosInit
 import entities.PedidosDAO
+import entities.TurnosDAO
 import entities.UsuariosDAO
 import exceptions.PedidoException
 import models.Pedido
 import models.TipoEstado
+import models.TipoUsuario
+import models.Usuario
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.jupiter.api.*
 import repositories.pedido.PedidosRepository
@@ -20,11 +23,21 @@ internal class PedidosRepositoryTest {
     private val pedidosRepository: PedidosRepository = PedidosRepository(PedidosDAO, UsuariosDAO)
     private val usuariosRepository: UsuariosRepository = UsuariosRepository(UsuariosDAO)
 
+    private val usuario = Usuario(
+        id = 1,
+        uuid = UUID.randomUUID(),
+        nombre = "Roberto",
+        apellido = "Gómez",
+        email = "roberto@gomez.com",
+        contrasena = "1234",
+        perfil = TipoUsuario.ADMINISTRADOR_ENCARGADO
+    )
+
     private val pedido = Pedido(
         id = 0,
         uuid = UUID.randomUUID(),
         estado = TipoEstado.TERMINADO,
-        encordador = getUsuariosInit()[2],
+        encordador = usuario,
         fechaTope = LocalDate.of(2022, 12, 15),
         fechaEntrada = LocalDate.of(2022, 11, 10),
         fechaProgramada = LocalDate.of(2022, 12, 7),
@@ -70,6 +83,29 @@ internal class PedidosRepositoryTest {
         DataBaseManager.clearTables()
     }
 
+    private fun saveData() = transaction {
+        val usuarioDAO = UsuariosDAO.new(pedido.encordador.id){
+            uuid = pedido.encordador.uuid
+            nombre = pedido.encordador.nombre
+            apellido = pedido.encordador.apellido
+            email = pedido.encordador.email
+            contrasena = pedido.encordador.contrasena
+            perfil = pedido.encordador.perfil
+
+        }
+
+        val pedidoDAO = PedidosDAO.new(pedido.id) {
+            uuid = pedido.uuid
+            estado = pedido.estado.toString()
+            encordador = usuarioDAO
+            fechaTope = pedido.fechaTope
+            fechaEntrada = pedido.fechaEntrada
+            fechaProgramada = pedido.fechaProgramada
+            fechaEntrega = pedido.fechaEntrega
+            precio = pedido.precio
+        }
+    }
+
     @Test
     fun findAll() {
         val res = pedidosRepository.findAll()
@@ -94,7 +130,7 @@ internal class PedidosRepositoryTest {
 
     @Test
     fun saveInsert() {
-        usuariosRepository.save(getUsuariosInit()[2])
+        usuariosRepository.save(usuario)
         val res = pedidosRepository.save(pedido)
 
         assert(pedidosRepository.findAll()[0] == res)

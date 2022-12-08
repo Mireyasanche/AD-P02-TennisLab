@@ -2,7 +2,10 @@ package repositories.tareas
 
 import config.AppConfig
 import db.DataBaseManager
+import db.getPedidosInit
+import db.getUsuariosInit
 import entities.PedidosDAO
+import entities.TurnosDAO
 import entities.UsuariosDAO
 import entities.tareas.TareasEncordadoDAO
 import models.Pedido
@@ -16,6 +19,7 @@ import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*
 import repositories.pedido.PedidosRepository
 import repositories.usuario.UsuariosRepository
+import java.lang.IllegalStateException
 import java.time.LocalDate
 import java.util.*
 
@@ -60,7 +64,7 @@ internal class TareasEncordadoRepositoryTest {
     )
 
     @AfterEach
-    fun tearDown() {
+    fun tearDown(){
         DataBaseManager.dropTables()
     }
 
@@ -71,7 +75,7 @@ internal class TareasEncordadoRepositoryTest {
     }
 
     private fun saveData() = transaction {
-        val usuarioDAO = UsuariosDAO.new(pedido.encordador.id) {
+        val usuarioDAO = UsuariosDAO.new(pedido.encordador.id){
             uuid = pedido.encordador.uuid
             nombre = pedido.encordador.nombre
             apellido = pedido.encordador.apellido
@@ -112,12 +116,10 @@ internal class TareasEncordadoRepositoryTest {
     }
 
     @Test
-    fun findById() = transaction {
+    fun findById()  = transaction {
         saveData()
 
         val res = tareasEncordadoRepository.findById(tarea.id)
-        println(res)
-        println(tarea)
 
         assert(res == tarea)
     }

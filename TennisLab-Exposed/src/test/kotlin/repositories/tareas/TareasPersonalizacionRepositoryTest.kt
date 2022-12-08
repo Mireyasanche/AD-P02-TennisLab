@@ -4,6 +4,8 @@ import config.AppConfig
 import db.DataBaseManager
 import db.getPedidosInit
 import entities.PedidosDAO
+import entities.UsuariosDAO
+import entities.tareas.TareasEncordadoDAO
 import entities.tareas.TareasPersonalizacionDAO
 import exceptions.tareas.TareaPersonalizacionException
 import models.Pedido
@@ -14,11 +16,16 @@ import models.tareas.TareaPersonalizacion
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*
+import repositories.pedido.PedidosRepository
+import repositories.usuario.UsuariosRepository
+import java.lang.IllegalStateException
 import java.time.LocalDate
 import java.util.*
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 internal class TareasPersonalizacionRepositoryTest {
+    private val usuariosRepository = UsuariosRepository(UsuariosDAO)
+    private val pedidosRepository = PedidosRepository(PedidosDAO, UsuariosDAO)
     private val tareasPersonalizacionRepository = TareasPersonalizacionRepository(TareasPersonalizacionDAO, PedidosDAO)
 
 
@@ -48,25 +55,53 @@ internal class TareasPersonalizacionRepositoryTest {
         id = 0,
         uuid = UUID.randomUUID(),
         precio = 70.0f,
-        pedido = getPedidosInit()[1],
+        pedido = pedido,
         peso = 0.3f,
         balance = 320.0f,
         rigidez = 70.0f
     )
 
-    @BeforeAll
-    fun setUp() {
-        DataBaseManager.init(AppConfig.DEFAULT)
-    }
-
-    @AfterAll
-    fun tearDown() {
+    @AfterEach
+    fun tearDown(){
         DataBaseManager.dropTables()
     }
 
     @BeforeEach
     fun beforeEach() {
+        DataBaseManager.init(AppConfig.DEFAULT)
         DataBaseManager.clearTables()
+    }
+
+    private fun saveData() = transaction {
+        val usuarioDAO = UsuariosDAO.new(pedido.encordador.id){
+            uuid = pedido.encordador.uuid
+            nombre = pedido.encordador.nombre
+            apellido = pedido.encordador.apellido
+            email = pedido.encordador.email
+            contrasena = pedido.encordador.contrasena
+            perfil = pedido.encordador.perfil
+
+        }
+
+        val pedidoDAO = PedidosDAO.new(pedido.id) {
+            uuid = pedido.uuid
+            estado = pedido.estado.toString()
+            encordador = usuarioDAO
+            fechaTope = pedido.fechaTope
+            fechaEntrada = pedido.fechaEntrada
+            fechaProgramada = pedido.fechaProgramada
+            fechaEntrega = pedido.fechaEntrega
+            precio = pedido.precio
+        }
+
+        val tareaDAO =  TareasPersonalizacionDAO.new(tarea.id) {
+            uuid = tarea.uuid
+            precio = tarea.precio
+            pedido = pedidoDAO
+            peso = tarea.peso
+            balance = tarea.balance
+            rigidez = tarea.rigidez
+        }
     }
 
     @Test
@@ -78,13 +113,7 @@ internal class TareasPersonalizacionRepositoryTest {
 
     @Test
     fun findById() = transaction {
-        TareasPersonalizacionDAO.new(tarea.id) {
-            uuid = tarea.uuid
-            precio = tarea.precio
-            peso = tarea.peso
-            balance = tarea.balance
-            rigidez = tarea.rigidez
-        }
+        saveData()
 
         val res = tareasPersonalizacionRepository.findById(tarea.id)
 
@@ -93,13 +122,15 @@ internal class TareasPersonalizacionRepositoryTest {
 
     @Test
     fun findByIdNoExiste() {
-        assertThrows<TareaPersonalizacionException> {
+        assertThrows<IllegalStateException> {
             val res = tareasPersonalizacionRepository.findById(-5)
         }
     }
 
     @Test
     fun saveInsert() {
+        usuariosRepository.save(usuario)
+        pedidosRepository.save(pedido)
         val res = tareasPersonalizacionRepository.save(tarea)
 
         assertAll(
@@ -114,13 +145,7 @@ internal class TareasPersonalizacionRepositoryTest {
 
     @Test
     fun saveUpdate() = transaction {
-        TareasPersonalizacionDAO.new(tarea.id) {
-            uuid = tarea.uuid
-            precio = tarea.precio
-            peso = tarea.peso
-            balance = tarea.balance
-            rigidez = tarea.rigidez
-        }
+        saveData()
 
         val res = tareasPersonalizacionRepository.save(tarea)
 
@@ -129,13 +154,7 @@ internal class TareasPersonalizacionRepositoryTest {
 
     @Test
     fun delete() = transaction {
-        TareasPersonalizacionDAO.new(tarea.id) {
-            uuid = tarea.uuid
-            precio = tarea.precio
-            peso = tarea.peso
-            balance = tarea.balance
-            rigidez = tarea.rigidez
-        }
+        saveData()
 
         val res = tareasPersonalizacionRepository.delete(tarea)
 

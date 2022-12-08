@@ -3,7 +3,7 @@ package models.tareas
 import models.Pedido
 import java.util.*
 
-class TareaEncordado(
+data class TareaEncordado(
     override val id: Int,
     override val uuid: UUID,
     override val precio: Float,

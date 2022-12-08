@@ -56,7 +56,7 @@ internal class TurnosRepositoryTest {
     }
 
     private fun saveData() = transaction {
-        val usuarioDAO = UsuariosDAO.new(turno.encordador.id) {
+         val usuarioDAO = UsuariosDAO.new(turno.encordador.id){
             uuid = turno.encordador.uuid
             nombre = turno.encordador.nombre
             apellido = turno.encordador.apellido
@@ -66,7 +66,7 @@ internal class TurnosRepositoryTest {
 
         }
 
-        TurnosDAO.new(turno.id) {
+         val turnoDAO = TurnosDAO.new(turno.id) {
             uuid = turno.uuid
             comienzo = turno.comienzo
             final = turno.final
