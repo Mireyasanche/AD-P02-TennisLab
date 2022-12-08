@@ -1,3 +1,8 @@
+/**
+ * @author Mireya Sánchez Pinzón
+ * @author Alejandro Sánchez Monzón
+ */
+
 package repositories.maquinas
 
 import models.maquinas.MaquinaEncordar

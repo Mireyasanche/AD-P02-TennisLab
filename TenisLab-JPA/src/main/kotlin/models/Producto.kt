@@ -1,10 +1,13 @@
+/**
+ * @author Mireya Sánchez Pinzón
+ * @author Alejandro Sánchez Monzón
+ */
+
 package models
 
 import org.hibernate.annotations.Type
 import java.util.*
 import javax.persistence.*
-
-
 @Entity
 @Table(name = "PRODUCTO")
 @NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p")
@@ -27,6 +30,15 @@ data class Producto(
 enum class TipoProducto(val tipoProducto: String) {
     RAQUETA("RAQUETA"), CORDAJE("CORDAJE"), COMPLEMENTO("COMPLEMENTO");
 
+    /**
+     * Función que parsea los Enums del objeto Producto. Indicando su equivalencia al valor de tipo String.
+     *
+     * @param producto El enum en formato String equivalente al valor de la clase Enum.
+     *
+     * @throws IllegalArgumentException Excepción que el método lanzará si el String que trata de parsear no eixste, o el tipo no existe.
+     *
+     * @return TipoProducto, un enum que variará dependiendo del valor de dicha variable.
+     */
     companion object {
         fun from(producto: String): TipoProducto {
             return when (producto.uppercase()) {

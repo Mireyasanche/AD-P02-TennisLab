@@ -1,3 +1,7 @@
+/**
+ * @author Mireya Sánchez Pinzón
+ * @author Alejandro Sánchez Monzón
+ */
 package mappers.maquinas
 
 import entities.maquinas.MaquinasEncordarDAO
@@ -13,6 +17,12 @@ import models.maquinas.MaquinaEncordar
 import models.maquinas.MaquinaPersonalizar
 import models.maquinas.TipoEncordaje
 
+/**
+ * Esta función de extensión de MaquinaEncrodarDAO se ocupa de convertir el objeto de acceso de datos (DAO)
+ * a su tipo original, como estructura en su modelo.
+ *
+ * @return MaquinaEncordar, el objeto convertido a modelo.
+ */
 fun MaquinasEncordarDAO.fromMaquinaEncordarDAOToMaquinaEncordar(): MaquinaEncordar {
     return MaquinaEncordar(
         id = id.value,
@@ -28,6 +38,12 @@ fun MaquinasEncordarDAO.fromMaquinaEncordarDAOToMaquinaEncordar(): MaquinaEncord
     )
 }
 
+/**
+ * Esta función de extensión de MaquinaPersonalizarDAO se ocupa de convertir el objeto de acceso de datos (DAO)
+ * a su tipo original, como estructura en su modelo.
+ *
+ * @return MaquinaPersonalizar, el objeto convertido a modelo.
+ */
 fun MaquinasPersonalizarDAO.fromMaquinaPersonalizarDAOToMaquinaPersonalizar(): MaquinaPersonalizar {
     return MaquinaPersonalizar(
         id = id.value,

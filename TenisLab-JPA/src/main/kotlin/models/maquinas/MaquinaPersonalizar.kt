@@ -1,7 +1,11 @@
+/**
+ * @author Mireya Sánchez Pinzón
+ * @author Alejandro Sánchez Monzón
+ */
+
 package models.maquinas
 
 import models.Turno
-import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.Type
 import java.time.LocalDate
 import java.util.*

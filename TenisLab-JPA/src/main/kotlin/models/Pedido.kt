@@ -1,6 +1,9 @@
+/**
+ * @author Mireya Sánchez Pinzón
+ * @author Alejandro Sánchez Monzón
+ */
 package models
 
-import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.Type
 import java.time.LocalDate
 import java.util.*
@@ -46,6 +49,16 @@ enum class TipoEstado(estado: String) {
     RECIBIDO("RECIBIDO"),
     EN_PROCESO("EN_PROCESO"),
     TERMINADO("TERMINADO");
+
+    /**
+     * Función que parsea los Enums del objeto Pedido. Indicando su equivalencia al valor de tipo String.
+     *
+     * @param estado El enum en formato String equivalente al valor de la clase Enum.
+     *
+     * @throws IllegalArgumentException Excepción que el método lanzará si el String que trata de parsear no eixste, o el tipo no existe.
+     *
+     * @return TipoEstado, un enum que variará dependiendo del valor de dicha variable.
+     */
 
     companion object {
         fun from(estado: String): TipoEstado {
