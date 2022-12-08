@@ -82,23 +82,22 @@ class MaquinasPersonalizarRepositoryTest {
         assert(res.isEmpty())
     }
 
-//    @Test
-//    fun findById() = transaction {
-//        MaquinasPersonalizarDAO.new(maquina.id) {
-//            uuid = maquina.uuid
-//            marca = maquina.marca
-//            modelo = maquina.modelo
-//            fechaAdquisicion = maquina.fechaAdquisicion
-//            numeroSerie = maquina.numeroSerie
-//            turno = maquina.turno
-//            mideManiobrabilidad = maquina.mideManiobrabilidad
-//            balance = maquina.balance
-//            rigidez = maquina.rigidez
-//        }
-//
-//        val res = maquinasPersonalizarRepository.findById(maquina.id)
-//        assert(res == maquina)
-//    }
+    @Test
+    fun findById() = transaction {
+        MaquinasPersonalizarDAO.new(maquina.id) {
+            uuid = maquina.uuid
+            marca = maquina.marca
+            modelo = maquina.modelo
+            fechaAdquisicion = maquina.fechaAdquisicion
+            numeroSerie = maquina.numeroSerie
+            mideManiobrabilidad = maquina.mideManiobrabilidad
+            balance = maquina.balance
+            rigidez = maquina.rigidez
+        }
+
+        val res = maquinasPersonalizarRepository.findById(maquina.id)
+        assert(res == maquina)
+    }
 
     @Test
     fun findByIdNoExiste() {
@@ -116,41 +115,39 @@ class MaquinasPersonalizarRepositoryTest {
 
         Assertions.assertTrue(maquinasPersonalizarRepository.findAll().size == 1)
     }
-//    @Test
-//    fun saveUpdate() = transaction {
-//        MaquinasPersonalizarDAO.new(maquina.id) {
-//            uuid = maquina.uuid
-//            marca = maquina.marca
-//            modelo = maquina.modelo
-//            fechaAdquisicion = maquina.fechaAdquisicion
-//            numeroSerie = maquina.numeroSerie
-//            turno = maquina.turno
-//            mideManiobrabilidad = maquina.mideManiobrabilidad
-//            balance = maquina.balance
-//            rigidez = maquina.rigidez
-//        }
-//
-//        val res = maquinasPersonalizarRepository.findById(maquina.id)
-//        assert(res == maquina)
-//    }
+    @Test
+    fun saveUpdate() = transaction {
+        MaquinasPersonalizarDAO.new(maquina.id) {
+            uuid = maquina.uuid
+            marca = maquina.marca
+            modelo = maquina.modelo
+            fechaAdquisicion = maquina.fechaAdquisicion
+            numeroSerie = maquina.numeroSerie
+            mideManiobrabilidad = maquina.mideManiobrabilidad
+            balance = maquina.balance
+            rigidez = maquina.rigidez
+        }
 
-//    @Test
-//    fun delete() = transaction {
-//        MaquinasPersonalizarDAO.new(maquina.id) {
-//            uuid = maquina.uuid
-//            marca = maquina.marca
-//            modelo = maquina.modelo
-//            fechaAdquisicion = maquina.fechaAdquisicion
-//            numeroSerie = maquina.numeroSerie
-//            turno = maquina.turno
-//            mideManiobrabilidad = maquina.mideManiobrabilidad
-//            balance = maquina.balance
-//            rigidez = maquina.rigidez
-//        }
-//
-//        val res = maquinasPersonalizarRepository.delete(maquina)
-//        assert(res)
-//    }
+        val res = maquinasPersonalizarRepository.findById(maquina.id)
+        assert(res == maquina)
+    }
+
+    @Test
+    fun delete() = transaction {
+        MaquinasPersonalizarDAO.new(maquina.id) {
+            uuid = maquina.uuid
+            marca = maquina.marca
+            modelo = maquina.modelo
+            fechaAdquisicion = maquina.fechaAdquisicion
+            numeroSerie = maquina.numeroSerie
+            mideManiobrabilidad = maquina.mideManiobrabilidad
+            balance = maquina.balance
+            rigidez = maquina.rigidez
+        }
+
+        val res = maquinasPersonalizarRepository.delete(maquina)
+        assert(res)
+    }
 
     @Test
     fun deleteNoExiste() {

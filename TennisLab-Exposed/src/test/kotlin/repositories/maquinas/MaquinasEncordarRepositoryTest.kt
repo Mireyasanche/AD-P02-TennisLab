@@ -11,6 +11,7 @@ import models.Turno
 import models.Usuario
 import models.maquinas.MaquinaEncordar
 import models.maquinas.TipoEncordaje
+import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.assertTrue
 import repositories.turno.TurnosRepository
@@ -80,23 +81,22 @@ internal class MaquinasEncordarRepositoryTest {
         assert(res.isEmpty())
     }
 
-//    @Test
-//    fun findById() = transaction {
-//        MaquinasEncordarDAO.new(maquina.id) {
-//            uuid = maquina.uuid
-//            marca = maquina.marca
-//            modelo = maquina.modelo
-//            fechaAdquisicion = maquina.fechaAdquisicion
-//            numeroSerie = maquina.numeroSerie
-//            turno = maquina.turno
-//            tipo = maquina.tipo.toString()
-//            tensionMaxima = maquina.tensionMaxima
-//            tensionMinima = maquina.tensionMinima
-//        }
-//
-//        val res = maquinasEncordarRepository.findById(maquina.id)
-//        assert(res == maquina)
-//    }
+    @Test
+    fun findById() = transaction {
+        MaquinasEncordarDAO.new(maquina.id) {
+            uuid = maquina.uuid
+            marca = maquina.marca
+            modelo = maquina.modelo
+            fechaAdquisicion = maquina.fechaAdquisicion
+            numeroSerie = maquina.numeroSerie
+            tipo = maquina.tipo.toString()
+            tensionMaxima = maquina.tensionMaxima
+            tensionMinima = maquina.tensionMinima
+        }
+
+       val res = maquinasEncordarRepository.findById(maquina.id)
+        assert(res == maquina)
+    }
 
     @Test
     fun findByIdNoExiste() {
@@ -114,41 +114,39 @@ internal class MaquinasEncordarRepositoryTest {
 
         assertTrue(maquinasEncordarRepository.findAll().size == 1)
     }
-//    @Test
-//    fun saveUpdate() = transaction {
-//        MaquinasEncordarDAO.new(maquina.id) {
-//            uuid = maquina.uuid
-//            marca = maquina.marca
-//            modelo = maquina.modelo
-//            fechaAdquisicion = maquina.fechaAdquisicion
-//            numeroSerie = maquina.numeroSerie
-//            turno = maquina.turno
-//            tipo = maquina.tipo.toString()
-//            tensionMaxima = maquina.tensionMaxima
-//            tensionMinima = maquina.tensionMinima
-//        }
-//
-//        val res = maquinasEncordarRepository.findById(maquina.id)
-//        assert(res == maquina)
-//    }
+    @Test
+    fun saveUpdate() = transaction {
+        MaquinasEncordarDAO.new(maquina.id) {
+            uuid = maquina.uuid
+            marca = maquina.marca
+            modelo = maquina.modelo
+            fechaAdquisicion = maquina.fechaAdquisicion
+            numeroSerie = maquina.numeroSerie
+            tipo = maquina.tipo.toString()
+            tensionMaxima = maquina.tensionMaxima
+            tensionMinima = maquina.tensionMinima
+        }
 
-//    @Test
-//    fun delete() = transaction {
-//        MaquinasEncordarDAO.new(maquina.id) {
-//           uuid = maquina.uuid
-//            marca = maquina.marca
-//            modelo = maquina.modelo
-//            fechaAdquisicion = maquina.fechaAdquisicion
-//            numeroSerie = maquina.numeroSerie
-//            turno = maquina.turno
-//            tipo = maquina.tipo.toString()
-//            tensionMaxima = maquina.tensionMaxima
-//            tensionMinima = maquina.tensionMinima
-//        }
-//
-//        val res = maquinasEncordarRepository.delete(maquina)
-//        assert(res)
-//    }
+        val res = maquinasEncordarRepository.findById(maquina.id)
+        assert(res == maquina)
+    }
+
+    @Test
+    fun delete() = transaction {
+        MaquinasEncordarDAO.new(maquina.id) {
+           uuid = maquina.uuid
+            marca = maquina.marca
+            modelo = maquina.modelo
+            fechaAdquisicion = maquina.fechaAdquisicion
+            numeroSerie = maquina.numeroSerie
+            tipo = maquina.tipo.toString()
+            tensionMaxima = maquina.tensionMaxima
+            tensionMinima = maquina.tensionMinima
+        }
+
+        val res = maquinasEncordarRepository.delete(maquina)
+        assert(res)
+    }
 
     @Test
     fun deleteNoExiste() {
