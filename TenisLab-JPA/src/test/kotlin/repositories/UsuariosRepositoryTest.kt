@@ -3,6 +3,8 @@ package repositories
 import db.HibernateManager
 import models.TipoUsuario
 import models.Usuario
+import org.hibernate.boot.model.relational.Database
+import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*
 import repositories.usuario.UsuariosRepository
