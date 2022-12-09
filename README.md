@@ -7,7 +7,7 @@
 > https://drive.google.com/file/d/1uMV5g0tLffVAKTA12k-_hMmrFOlZXWMJ/view?usp=share_link
 
 ## · Documentación
-> https://iesluisvives-my.sharepoint.com/:w:/g/personal/mireya_sanchez_alumno_iesluisvives_org/EWT6k71eUAJMjFaQk2aG3P8BmJvsjkmS9WcJzwMC6Q9sNg?e=hkevi9
+> https://github.com/Mireyasanche/AD-P02-TennisLab/blob/main/metadata/AD-P02-Memoria.pdf
 
 <br>
 <hr>
