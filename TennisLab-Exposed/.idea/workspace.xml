@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2754cc35-17f7-4907-a054-8ec667c262f8" name="Changes" comment="" />
+    <list default="true" id="f22e2f8e-0a0c-48b1-a472-1e6c493b0cca" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../TenisLab-JPA/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TenisLab-JPA/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TenisLab-JPA/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,7 +19,35 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Data Class" />
+        <option value="Kotlin Interface" />
+        <option value="Kotlin Class" />
+        <option value="Kotlin File" />
+      </list>
+    </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectId" id="2HpI0teyKmfJuHSfkdHTBQqoAzx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -25,22 +57,88 @@
     "Project.color": "0a5b4c",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false"
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/mireyasanchez/Documents/AccesoADatos/Practicas/P02_Tenis/AD-P02-TennisLab/TennisLab-Exposed",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/kotlin/exceptions/Tareas" />
+      <recent name="$PROJECT_DIR$/src/main/kotlin/exceptions/Maquinas" />
+      <recent name="$PROJECT_DIR$/src/main/kotlin/models/Tareas" />
+      <recent name="$PROJECT_DIR$/src/main/kotlin/models/Maquinas" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="repositories.Usuario" />
+      <recent name="dto.Tareas" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainKt" />
+      <module name="TennisLab-Exposed.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Kotlin.MainKt" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2754cc35-17f7-4907-a054-8ec667c262f8" name="Changes" comment="" />
+      <changelist id="f22e2f8e-0a0c-48b1-a472-1e6c493b0cca" name="Changes" comment="" />
       <created>1668975379770</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668975379770</updated>
       <workItem from="1668975381340" duration="27000" />
+      <workItem from="1668977559398" duration="195000" />
+      <workItem from="1669143196529" duration="7876000" />
+      <workItem from="1669221574552" duration="4913000" />
+      <workItem from="1669657045326" duration="5584000" />
+      <workItem from="1669713929024" duration="46000" />
+      <workItem from="1669714044148" duration="58000" />
+      <workItem from="1669751167612" duration="2349000" />
+      <workItem from="1670350693567" duration="10646000" />
+<<<<<<< HEAD
+      <workItem from="1670424674825" duration="6321000" />
+=======
+      <workItem from="1670424674825" duration="5534000" />
+      <workItem from="1670431147324" duration="1054000" />
+>>>>>>> 215cc9f7704c63344f63b3a9e9158f097aedaea1
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
